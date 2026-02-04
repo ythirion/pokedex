@@ -6,7 +6,7 @@
 	import { formatPokemonName, formatPokemonId, formatHeight, formatWeight, getStatName, getStatColor } from '$lib/utils/pokemon.utils';
 	import { getTypeColors, translateType } from '$lib/utils/type-colors';
 	import { favoritesStore } from '$lib/stores/favorites.store';
-	import LoadingSpinner from '../ui/LoadingSpinner.svelte';
+	import PokeballLoader from '../ui/PokeballLoader.svelte';
 	import ErrorMessage from '../ui/ErrorMessage.svelte';
 	import EvolutionChainComponent from './EvolutionChain.svelte';
 
@@ -70,7 +70,7 @@
 </script>
 
 {#if isLoading}
-	<LoadingSpinner size="lg" />
+	<PokeballLoader size="lg" />
 {:else if error}
 	<ErrorMessage message={error} retry={loadPokemon} />
 {:else if pokemon && species}
@@ -124,7 +124,6 @@
 				</button>
 			</div>
 
-			<!-- Image and Basic Info -->
 			<div class="grid md:grid-cols-2 gap-8 mb-8">
 				<div>
 					<img
@@ -158,7 +157,6 @@
 						</div>
 					</div>
 
-					<!-- Abilities -->
 					<div>
 						<h3 class="text-lg font-semibold mb-2">Capacités</h3>
 						<div class="flex flex-wrap gap-2">
@@ -199,7 +197,6 @@
 				</div>
 			</div>
 
-			<!-- Evolution Chain -->
 			{#if evolutionChain}
 				<div>
 					<h2 class="text-2xl font-bold mb-4">Chaîne d'évolution</h2>

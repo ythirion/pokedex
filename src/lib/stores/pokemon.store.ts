@@ -124,6 +124,55 @@ function createPokemonStore() {
 		},
 
 		/**
+		 * Enrich a specific list of Pokemon IDs (for filtered metadata)
+		 */
+		enrichMetadataPage: async (ids: number[]) => {
+			try {
+				const promises = ids.map(async (id) => {
+					try {
+						const [pokemon, species] = await Promise.all([
+							getPokemonById(id),
+							getSpeciesById(id)
+						]);
+
+						// Get French name
+						const frenchName = species.names.find((n) => n.language.name === 'fr')?.name || pokemon.name;
+
+						return {
+							id,
+							pokemon,
+							isLegendary: species.is_legendary,
+							isMythical: species.is_mythical,
+							frenchName
+						};
+					} catch (error) {
+						console.error(`Failed to enrich Pokemon ${id}:`, error);
+						return null;
+					}
+				});
+
+				const results = await Promise.all(promises);
+
+				update((state) => {
+					const newCache = new Map(state.enrichedCache);
+
+					results.forEach((result) => {
+						if (result) {
+							newCache.set(result.id, result.pokemon);
+						}
+					});
+
+					return {
+						...state,
+						enrichedCache: newCache
+					};
+				});
+			} catch (error) {
+				console.error('Failed to enrich Pokemon page:', error);
+			}
+		},
+
+		/**
 		 * Reset store to initial state
 		 */
 		reset: () => set(initialState)

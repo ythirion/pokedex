@@ -3,7 +3,7 @@ import { BASE_URL } from '$lib/constants/api-config';
 import { cacheService } from './cache.service';
 
 class PokeAPIClient {
-	private baseURL: string;
+	private readonly baseURL: string;
 
 	constructor(baseURL: string = BASE_URL) {
 		this.baseURL = baseURL;

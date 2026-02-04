@@ -8,7 +8,7 @@ interface CacheEntry<T> {
 
 class CacheService {
 	private cache: Map<string, CacheEntry<unknown>>;
-	private maxSize: number;
+	private readonly maxSize: number;
 
 	constructor(maxSize: number = CACHE_MAX_SIZE) {
 		this.cache = new Map();

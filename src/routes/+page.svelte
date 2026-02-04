@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { pokemonStore, currentPagePokemon, totalPages } from '$lib/stores/pokemon.store';
+	import { allPokemonMetadata } from '$lib/stores/allPokemonMetadata.store';
 	import { searchStore } from '$lib/stores/search.store';
 	import { filtersStore } from '$lib/stores/filters.store';
 	import PokemonGrid from '$lib/components/pokemon/PokemonGrid.svelte';
@@ -9,58 +10,91 @@
 	import FilterPanel from '$lib/components/ui/FilterPanel.svelte';
 	import ErrorMessage from '$lib/components/ui/ErrorMessage.svelte';
 	import { GENERATIONS } from '$lib/constants/generations';
-	import type { EnrichedPokemon } from '$lib/types/pokemon.types';
+	import { DEFAULT_PAGE_SIZE } from '$lib/constants/api-config';
+	import { applyClientSideFilters, paginateResults, calculateTotalPages } from '$lib/utils/filterUtils';
+	import type { EnrichedPokemon, PokemonMetadata } from '$lib/types/pokemon.types';
 
 	$: store = $pokemonStore;
 	$: pokemon = $currentPagePokemon;
 	$: pages = $totalPages;
 	$: search = $searchStore;
 	$: filters = $filtersStore;
+	$: metadata = $allPokemonMetadata;
 
-	// Filter Pokemon based on search and filters
-	$: filteredPokemon = (() => {
-		let result = pokemon;
+	// Detect if we need to load all metadata (for non-generation filters)
+	$: hasActiveNonGenFilters =
+		filters.types.length > 0 ||
+		filters.legendaryOnly ||
+		search.debouncedQuery.length > 0;
 
-		// Apply search filter
-		if (search.debouncedQuery) {
-			const query = search.debouncedQuery.toLowerCase();
-			result = result.filter((p) =>
-				p.name.toLowerCase().includes(query) ||
-				p.frenchName?.toLowerCase().includes(query)
-			);
-		}
+	// Load all metadata when non-generation filters are active
+	$: if (hasActiveNonGenFilters && !metadata.isLoaded && !metadata.isLoading) {
+		allPokemonMetadata.loadAllMetadata();
+	}
 
-		// Apply generation filter
-		if (filters.generation !== null) {
-			const gen = GENERATIONS.find((g) => g.id === filters.generation);
-			if (gen) {
-				const [start, end] = gen.range;
-				result = result.filter((p) => p.id >= start && p.id <= end);
-			}
-		}
+	// Local pagination state for filtered results
+	let filteredPage = 1;
 
-		// Apply legendary filter
-		if (filters.legendaryOnly) {
-			result = result.filter((p) => p.isLegendary || p.isMythical);
-		}
+	// Reset filtered page when filters change
+	$: if (filters || search.debouncedQuery) {
+		filteredPage = 1;
+	}
 
-		// Apply type filter (requires enriched data)
-		if (filters.types.length > 0) {
-			result = result.filter((p) => {
-				if (!p.pokemon) return false;
-				return p.pokemon.types.some((t) => filters.types.includes(t.type.name as any));
+	// Apply filters to metadata or current page
+	$: filteredMetadata = (() => {
+		if (hasActiveNonGenFilters && metadata.isLoaded) {
+			// Use client-side filtering on all metadata
+			return applyClientSideFilters(metadata.allPokemon, {
+				types: filters.types,
+				generation: filters.generation,
+				legendaryOnly: filters.legendaryOnly,
+				searchQuery: search.debouncedQuery
 			});
 		}
+		return [];
+	})();
 
-		return result;
-	})() as EnrichedPokemon[];
+	// Paginate filtered results
+	$: paginatedMetadata = hasActiveNonGenFilters && metadata.isLoaded
+		? paginateResults(filteredMetadata, filteredPage, DEFAULT_PAGE_SIZE)
+		: [];
+
+	// Calculate total pages for filtered results
+	$: filteredTotalPages = hasActiveNonGenFilters && metadata.isLoaded
+		? calculateTotalPages(filteredMetadata.length, DEFAULT_PAGE_SIZE)
+		: 0;
+
+	// Convert paginated metadata to EnrichedPokemon format
+	$: enrichedFilteredPokemon = paginatedMetadata.map((meta): EnrichedPokemon => ({
+		id: meta.id,
+		name: meta.name,
+		url: `https://pokeapi.co/api/v2/pokemon/${meta.id}/`,
+		pokemon: store.enrichedCache.get(meta.id),
+		isLegendary: meta.isLegendary,
+		isMythical: meta.isMythical,
+		frenchName: meta.frenchName
+	}));
+
+	// Final filtered Pokemon to display
+	$: filteredPokemon = (hasActiveNonGenFilters && metadata.isLoaded
+		? enrichedFilteredPokemon
+		: (() => {
+			// Apply generation filter to current page if active
+			let result = pokemon;
+
+			if (filters.generation !== null) {
+				const gen = GENERATIONS.find((g) => g.id === filters.generation);
+				if (gen) {
+					const [start, end] = gen.range;
+					result = result.filter((p) => p.id >= start && p.id <= end);
+				}
+			}
+
+			return result;
+		})()) as EnrichedPokemon[];
 
 	// Check if any filter is active
-	$: hasActiveFilters =
-		filters.generation !== null ||
-		filters.legendaryOnly ||
-		filters.types.length > 0 ||
-		search.debouncedQuery.length > 0;
+	$: hasActiveFilters = hasActiveNonGenFilters || filters.generation !== null;
 
 	async function loadPokemonData() {
 		// If generation filter is active, load all Pokemon from that generation
@@ -81,6 +115,12 @@
 		await pokemonStore.enrichPokemon(ids);
 	}
 
+	// Enrich filtered metadata page when it changes
+	$: if (hasActiveNonGenFilters && metadata.isLoaded && paginatedMetadata.length > 0) {
+		const ids = paginatedMetadata.map((m) => m.id);
+		pokemonStore.enrichMetadataPage(ids);
+	}
+
 	let previousGeneration: number | null = null;
 
 	onMount(async () => {
@@ -95,17 +135,19 @@
 	}
 
 	async function handlePageChange(event: CustomEvent<number>) {
-		if (hasActiveFilters) {
-			// Don't change pages when filters are active
-			return;
-		}
-
 		const newPage = event.detail;
-		await pokemonStore.loadPage(newPage);
 
-		// Enrich new Pokemon
-		const ids = $currentPagePokemon.map((p) => p.id);
-		await pokemonStore.enrichPokemon(ids);
+		if (hasActiveNonGenFilters && metadata.isLoaded) {
+			// Change filtered page
+			filteredPage = newPage;
+		} else {
+			// Normal pagination
+			await pokemonStore.loadPage(newPage);
+
+			// Enrich new Pokemon
+			const ids = $currentPagePokemon.map((p) => p.id);
+			await pokemonStore.enrichPokemon(ids);
+		}
 
 		// Scroll to top
 		window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -130,19 +172,42 @@
 
 	<FilterPanel />
 
-	{#if store.error}
-		<ErrorMessage message={store.error} retry={handleRetry} />
+	{#if store.error || metadata.error}
+		<ErrorMessage message={store.error || metadata.error || 'Error loading data'} retry={handleRetry} />
 	{:else}
-		<PokemonGrid pokemon={filteredPokemon} isLoading={store.isLoading} />
+		<PokemonGrid
+			pokemon={filteredPokemon}
+			isLoading={store.isLoading || (hasActiveNonGenFilters && metadata.isLoading)}
+		/>
 
-		{#if !store.isLoading && filteredPokemon.length > 0 && !hasActiveFilters}
-			<Pagination currentPage={store.currentPage} totalPages={pages} on:change={handlePageChange} />
-		{/if}
-
-		{#if hasActiveFilters && !store.isLoading}
-			<div class="text-center py-6 text-gray-600">
-				{filteredPokemon.length} Pokémon trouvé{filteredPokemon.length > 1 ? 's' : ''}
-			</div>
+		{#if !store.isLoading && !metadata.isLoading}
+			{#if hasActiveNonGenFilters && metadata.isLoaded}
+				<!-- Filtered results pagination -->
+				<div class="text-center py-6">
+					<p class="text-gray-600 mb-4">
+						{filteredMetadata.length} Pokémon trouvé{filteredMetadata.length > 1 ? 's' : ''}
+					</p>
+					{#if filteredTotalPages > 1}
+						<Pagination
+							currentPage={filteredPage}
+							totalPages={filteredTotalPages}
+							on:change={handlePageChange}
+						/>
+					{/if}
+				</div>
+			{:else if !hasActiveFilters && filteredPokemon.length > 0}
+				<!-- Normal pagination -->
+				<Pagination
+					currentPage={store.currentPage}
+					totalPages={pages}
+					on:change={handlePageChange}
+				/>
+			{:else if filters.generation !== null && filteredPokemon.length > 0}
+				<!-- Generation filter active -->
+				<div class="text-center py-6 text-gray-600">
+					{filteredPokemon.length} Pokémon trouvé{filteredPokemon.length > 1 ? 's' : ''}
+				</div>
+			{/if}
 		{/if}
 	{/if}
 </div>

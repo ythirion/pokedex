@@ -81,3 +81,14 @@ export interface EnrichedPokemon extends PokemonListItem {
 	isMythical?: boolean;
 	frenchName?: string;
 }
+
+// Pokemon metadata for client-side filtering
+export interface PokemonMetadata {
+	id: number;
+	name: string;
+	frenchName?: string;
+	isLegendary?: boolean;
+	isMythical?: boolean;
+	types: PokemonTypeString[];
+	generation: number;
+}

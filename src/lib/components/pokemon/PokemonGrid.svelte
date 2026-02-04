@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { EnrichedPokemon } from '$lib/types/pokemon.types';
 	import PokemonCard from './PokemonCard.svelte';
-	import LoadingSpinner from '../ui/LoadingSpinner.svelte';
+	import PokeballLoader from '../ui/PokeballLoader.svelte';
 	import { favoritesStore } from '$lib/stores/favorites.store';
 
 	export let pokemon: EnrichedPokemon[];
@@ -11,7 +11,7 @@
 </script>
 
 {#if isLoading}
-	<LoadingSpinner size="lg" />
+	<PokeballLoader size="lg" />
 {:else if pokemon.length === 0}
 	<div class="text-center py-12">
 		<p class="text-gray-500 text-lg">Aucun Pokémon trouvé</p>
