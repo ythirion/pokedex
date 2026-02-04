@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { base } from '$app/paths';
 	import type { Pokemon } from '$lib/types/pokemon.types';
 	import type { PokemonSpecies, EvolutionChain } from '$lib/types/species.types';
 	import { getPokemonById } from '$lib/services/api/pokemon.service';
@@ -76,7 +77,7 @@
 {:else if pokemon && species}
 	<div class="max-w-4xl mx-auto">
 		<div class="mb-6">
-			<a href="/" class="text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 flex items-center gap-2">
+			<a href="{base}/" class="text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 flex items-center gap-2">
 				<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
 				</svg>
