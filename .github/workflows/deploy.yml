@@ -36,6 +36,9 @@ jobs:
           BASE_PATH: '/${{ github.event.repository.name }}'
         run: npm run build
 
+      - name: Create 404.html for GitHub Pages
+        run: cp build/200.html build/404.html
+
       - name: Upload Artifacts
         uses: actions/upload-pages-artifact@v3
         with:
