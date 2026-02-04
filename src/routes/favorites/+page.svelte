@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+    import { base } from '$app/paths';
 	import { favoritesStore } from '$lib/stores/favorites.store';
 	import { getPokemonBatch } from '$lib/services/api/pokemon.service';
 	import { getSpeciesById } from '$lib/services/api/species.service';
@@ -99,7 +100,7 @@
 	{:else if favoritePokemon.length === 0}
 		<div class="text-center py-12">
 			<p class="text-gray-500 text-lg mb-4">Vous n'avez pas encore de Pokémon favoris</p>
-			<a href="/" class="btn btn-primary">Parcourir les Pokémon</a>
+            <a href="{base}/" class="btn btn-primary">Parcourir les Pokémon</a>
 		</div>
 	{:else}
 		<PokemonGrid pokemon={favoritePokemon} isLoading={false} />
