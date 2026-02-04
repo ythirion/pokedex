@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { base } from '$app/paths';
 	import type { EvolutionChain, ChainLink } from '$lib/types/species.types';
 	import { formatPokemonName, getPokemonSpriteUrl } from '$lib/utils/pokemon.utils';
 
@@ -60,7 +61,7 @@
 	{#each [evolutionData] as evo}
 		<div class="flex items-center gap-4 flex-wrap justify-center">
 			<!-- Current Pokemon -->
-			<a href="/pokemon/{evo.id}" class="flex flex-col items-center group">
+			<a href="{base}/pokemon/{evo.id}" class="flex flex-col items-center group">
 				<div class="w-32 h-32 bg-gray-100 dark:bg-gray-700 rounded-lg p-2 group-hover:shadow-lg dark:group-hover:shadow-gray-900/50 transition-shadow">
 					<img src={evo.spriteUrl} alt={evo.name} class="w-full h-full object-contain" />
 				</div>
@@ -83,7 +84,7 @@
 
 						<!-- Next Pokemon -->
 						<div class="flex flex-col items-center">
-							<a href="/pokemon/{nextEvo.id}" class="flex flex-col items-center group">
+							<a href="{base}/pokemon/{nextEvo.id}" class="flex flex-col items-center group">
 								<div class="w-32 h-32 bg-gray-100 dark:bg-gray-700 rounded-lg p-2 group-hover:shadow-lg dark:group-hover:shadow-gray-900/50 transition-shadow">
 									<img src={nextEvo.spriteUrl} alt={nextEvo.name} class="w-full h-full object-contain" />
 								</div>
@@ -103,7 +104,7 @@
 													<span class="text-xs text-gray-500 dark:text-gray-400 text-center max-w-20">{finalEvo.trigger}</span>
 												{/if}
 											</div>
-											<a href="/pokemon/{finalEvo.id}" class="flex flex-col items-center group">
+											<a href="{base}/pokemon/{finalEvo.id}" class="flex flex-col items-center group">
 												<div class="w-32 h-32 bg-gray-100 dark:bg-gray-700 rounded-lg p-2 group-hover:shadow-lg dark:group-hover:shadow-gray-900/50 transition-shadow">
 													<img src={finalEvo.spriteUrl} alt={finalEvo.name} class="w-full h-full object-contain" />
 												</div>

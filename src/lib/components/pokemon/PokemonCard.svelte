@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { base } from '$app/paths';
 	import type { EnrichedPokemon } from '$lib/types/pokemon.types';
 	import { formatPokemonId, getPokemonSpriteUrl } from '$lib/utils/pokemon.utils';
 	import { getTypeColors, translateType } from '$lib/utils/type-colors';
@@ -22,7 +23,7 @@
 </script>
 
 <a
-	href="/pokemon/{pokemon.id}"
+	href="{base}/pokemon/{pokemon.id}"
 	class="pokemon-card block relative overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl"
 	class:legendary-card={isLegendary}
 	style="background: linear-gradient(135deg, {typeColors.bg.replace('bg-', '')} 0%, #ffffff 100%);"
