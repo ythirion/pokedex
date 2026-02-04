@@ -34,6 +34,7 @@
 
 	// Local pagination state for filtered results
 	let filteredPage = 1;
+	let isPaginationLoading = false;
 
 	// Reset filtered page when filters change
 	$: if (filters || search.debouncedQuery) {
@@ -115,8 +116,8 @@
 		await pokemonStore.enrichPokemon(ids);
 	}
 
-	// Enrich filtered metadata page when it changes
-	$: if (hasActiveNonGenFilters && metadata.isLoaded && paginatedMetadata.length > 0) {
+	// Enrich filtered metadata page when it changes (but not during pagination)
+	$: if (hasActiveNonGenFilters && metadata.isLoaded && paginatedMetadata.length > 0 && !isPaginationLoading) {
 		const ids = paginatedMetadata.map((m) => m.id);
 		pokemonStore.enrichMetadataPage(ids);
 	}
@@ -136,17 +137,26 @@
 
 	async function handlePageChange(event: CustomEvent<number>) {
 		const newPage = event.detail;
+		isPaginationLoading = true;
 
-		if (hasActiveNonGenFilters && metadata.isLoaded) {
-			// Change filtered page
-			filteredPage = newPage;
-		} else {
-			// Normal pagination
-			await pokemonStore.loadPage(newPage);
+		try {
+			if (hasActiveNonGenFilters && metadata.isLoaded) {
+				// Change filtered page
+				filteredPage = newPage;
 
-			// Enrich new Pokemon
-			const ids = $currentPagePokemon.map((p) => p.id);
-			await pokemonStore.enrichPokemon(ids);
+				// Wait for enrichment to complete
+				const ids = paginatedMetadata.map((m) => m.id);
+				await pokemonStore.enrichMetadataPage(ids);
+			} else {
+				// Normal pagination
+				await pokemonStore.loadPage(newPage);
+
+				// Enrich new Pokemon
+				const ids = $currentPagePokemon.map((p) => p.id);
+				await pokemonStore.enrichPokemon(ids);
+			}
+		} finally {
+			isPaginationLoading = false;
 		}
 
 		// Scroll to top
@@ -177,7 +187,7 @@
 	{:else}
 		<PokemonGrid
 			pokemon={filteredPokemon}
-			isLoading={store.isLoading || (hasActiveNonGenFilters && metadata.isLoading)}
+			isLoading={store.isLoading || (hasActiveNonGenFilters && metadata.isLoading) || isPaginationLoading}
 		/>
 
 		{#if !store.isLoading && !metadata.isLoading}
