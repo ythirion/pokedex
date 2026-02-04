@@ -18,14 +18,14 @@
 	}
 
 	.btn-secondary {
-		@apply bg-gray-200 text-gray-800 hover:bg-gray-300 active:bg-gray-400;
+		@apply bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 active:bg-gray-400 dark:active:bg-gray-500;
 	}
 
 	.card {
-		@apply bg-white rounded-lg shadow-md p-4 transition-all duration-200;
+		@apply bg-white dark:bg-gray-800 rounded-lg shadow-md dark:shadow-gray-900/30 p-4 transition-all duration-200;
 	}
 
 	.card:hover {
-		@apply shadow-lg transform -translate-y-1;
+		@apply shadow-lg dark:shadow-gray-900/50 transform -translate-y-1;
 	}
 }

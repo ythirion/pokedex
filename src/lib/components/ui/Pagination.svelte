@@ -72,16 +72,19 @@
 			<button
 				on:click={() => handlePage(page)}
 				class="px-4 py-2 rounded-lg font-medium transition-colors"
-				class:bg-blue-500={currentPage === page}
+				class:bg-red-600={currentPage === page}
 				class:text-white={currentPage === page}
 				class:bg-gray-200={currentPage !== page}
+				class:dark:bg-gray-700={currentPage !== page}
 				class:text-gray-800={currentPage !== page}
+				class:dark:text-gray-200={currentPage !== page}
 				class:hover:bg-gray-300={currentPage !== page}
+				class:dark:hover:bg-gray-600={currentPage !== page}
 			>
 				{page}
 			</button>
 		{:else}
-			<span class="px-2 text-gray-500">{page}</span>
+			<span class="px-2 text-gray-500 dark:text-gray-400">{page}</span>
 		{/if}
 	{/each}
 

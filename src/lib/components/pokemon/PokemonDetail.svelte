@@ -76,7 +76,7 @@
 {:else if pokemon && species}
 	<div class="max-w-4xl mx-auto">
 		<div class="mb-6">
-			<a href="/" class="text-blue-500 hover:text-blue-700 flex items-center gap-2">
+			<a href="/" class="text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 flex items-center gap-2">
 				<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
 				</svg>
@@ -84,14 +84,14 @@
 			</a>
 		</div>
 
-		<div class="bg-white rounded-lg shadow-lg p-8">
+		<div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg dark:shadow-gray-900/30 p-8 transition-colors">
 			<!-- Header -->
 			<div class="flex justify-between items-start mb-6">
 				<div>
-					<div class="text-sm text-gray-500 font-semibold mb-2">
+					<div class="text-sm text-gray-500 dark:text-gray-400 font-semibold mb-2">
 						{formatPokemonId(pokemon.id)}
 					</div>
-					<h1 class="text-4xl font-bold mb-2">
+					<h1 class="text-4xl font-bold mb-2 text-gray-900 dark:text-gray-100">
 						{getFrenchName()}
 					</h1>
 					<div class="flex gap-2">
@@ -106,7 +106,7 @@
 
 				<button
 					on:click={toggleFavorite}
-					class="p-3 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+					class="p-3 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
 					aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
 				>
 					<svg
@@ -114,6 +114,7 @@
 						class:text-red-500={isFavorite}
 						class:fill-current={isFavorite}
 						class:text-gray-400={!isFavorite}
+						class:dark:text-gray-500={!isFavorite}
 						viewBox="0 0 24 24"
 						fill="none"
 						stroke="currentColor"
@@ -134,37 +135,37 @@
 				</div>
 
 				<div class="space-y-4">
-					<p class="text-gray-700 leading-relaxed">{getDescription()}</p>
+					<p class="text-gray-700 dark:text-gray-300 leading-relaxed">{getDescription()}</p>
 
 					<div class="grid grid-cols-2 gap-4">
 						<div>
-							<div class="text-sm text-gray-500">Taille</div>
-							<div class="font-semibold">{formatHeight(pokemon.height)}</div>
+							<div class="text-sm text-gray-500 dark:text-gray-400">Taille</div>
+							<div class="font-semibold text-gray-900 dark:text-gray-100">{formatHeight(pokemon.height)}</div>
 						</div>
 						<div>
-							<div class="text-sm text-gray-500">Poids</div>
-							<div class="font-semibold">{formatWeight(pokemon.weight)}</div>
+							<div class="text-sm text-gray-500 dark:text-gray-400">Poids</div>
+							<div class="font-semibold text-gray-900 dark:text-gray-100">{formatWeight(pokemon.weight)}</div>
 						</div>
 						<div>
-							<div class="text-sm text-gray-500">Expérience de base</div>
-							<div class="font-semibold">{pokemon.base_experience}</div>
+							<div class="text-sm text-gray-500 dark:text-gray-400">Expérience de base</div>
+							<div class="font-semibold text-gray-900 dark:text-gray-100">{pokemon.base_experience}</div>
 						</div>
 						<div>
-							<div class="text-sm text-gray-500">Catégorie</div>
-							<div class="font-semibold capitalize">
+							<div class="text-sm text-gray-500 dark:text-gray-400">Catégorie</div>
+							<div class="font-semibold capitalize text-gray-900 dark:text-gray-100">
 								{species.genera.find((g) => g.language.name === 'fr')?.genus || 'Inconnu'}
 							</div>
 						</div>
 					</div>
 
 					<div>
-						<h3 class="text-lg font-semibold mb-2">Capacités</h3>
+						<h3 class="text-lg font-semibold mb-2 text-gray-900 dark:text-gray-100">Capacités</h3>
 						<div class="flex flex-wrap gap-2">
 							{#each pokemon.abilities as ability}
-								<span class="px-3 py-1 bg-gray-100 rounded-full text-sm capitalize">
+								<span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-full text-sm capitalize">
 									{ability.ability.name.replace('-', ' ')}
 									{#if ability.is_hidden}
-										<span class="text-xs text-gray-500">(Cachée)</span>
+										<span class="text-xs text-gray-500 dark:text-gray-400">(Cachée)</span>
 									{/if}
 								</span>
 							{/each}
@@ -175,7 +176,7 @@
 
 			<!-- Stats -->
 			<div class="mb-8">
-				<h2 class="text-2xl font-bold mb-4">Statistiques de base</h2>
+				<h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Statistiques de base</h2>
 				<div class="space-y-3">
 					{#each pokemon.stats as stat}
 						{@const statName = getStatName(stat.stat.name)}
@@ -183,10 +184,10 @@
 						{@const percentage = (stat.base_stat / 255) * 100}
 						<div>
 							<div class="flex justify-between mb-1">
-								<span class="text-sm font-medium">{statName}</span>
-								<span class="text-sm font-bold">{stat.base_stat}</span>
+								<span class="text-sm font-medium text-gray-700 dark:text-gray-300">{statName}</span>
+								<span class="text-sm font-bold text-gray-900 dark:text-gray-100">{stat.base_stat}</span>
 							</div>
-							<div class="w-full bg-gray-200 rounded-full h-2">
+							<div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
 								<div
 									class={`h-2 rounded-full ${statColor}`}
 									style="width: {percentage}%"
@@ -199,7 +200,7 @@
 
 			{#if evolutionChain}
 				<div>
-					<h2 class="text-2xl font-bold mb-4">Chaîne d'évolution</h2>
+					<h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Chaîne d'évolution</h2>
 					<EvolutionChainComponent chain={evolutionChain} />
 				</div>
 			{/if}

@@ -22,11 +22,11 @@
 			value={inputValue}
 			on:input={handleInput}
 			placeholder="Rechercher un Pokémon par nom..."
-			class="w-full px-4 py-3 pl-12 pr-12 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all"
+			class="w-full px-4 py-3 pl-12 pr-12 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:border-red-500 focus:ring-2 focus:ring-red-200 dark:focus:ring-red-800 outline-none transition-all"
 		/>
 
 		<svg
-			class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"
+			class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 dark:text-gray-500"
 			fill="none"
 			stroke="currentColor"
 			viewBox="0 0 24 24"
@@ -42,7 +42,7 @@
 		{#if inputValue}
 			<button
 				on:click={clearSearch}
-				class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+				class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
 				aria-label="Clear search"
 			>
 				<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

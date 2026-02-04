@@ -18,7 +18,7 @@
 			<!-- Top half (red) -->
 			<path
 				d="M 50 10 A 40 40 0 0 1 90 50 L 50 50 Z"
-				fill="#EF4444"
+				fill="#DC2626"
 				stroke="#1F2937"
 				stroke-width="2"
 			/>

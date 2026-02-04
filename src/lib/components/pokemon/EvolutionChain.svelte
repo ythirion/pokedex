@@ -61,10 +61,10 @@
 		<div class="flex items-center gap-4 flex-wrap justify-center">
 			<!-- Current Pokemon -->
 			<a href="/pokemon/{evo.id}" class="flex flex-col items-center group">
-				<div class="w-32 h-32 bg-gray-100 rounded-lg p-2 group-hover:shadow-lg transition-shadow">
+				<div class="w-32 h-32 bg-gray-100 dark:bg-gray-700 rounded-lg p-2 group-hover:shadow-lg dark:group-hover:shadow-gray-900/50 transition-shadow">
 					<img src={evo.spriteUrl} alt={evo.name} class="w-full h-full object-contain" />
 				</div>
-				<span class="text-sm font-medium mt-2 capitalize">{formatPokemonName(evo.name)}</span>
+				<span class="text-sm font-medium mt-2 capitalize text-gray-900 dark:text-gray-100">{formatPokemonName(evo.name)}</span>
 			</a>
 
 			<!-- Evolutions -->
@@ -73,21 +73,21 @@
 					<div class="flex items-center gap-4">
 						<!-- Arrow with trigger -->
 						<div class="flex flex-col items-center">
-							<svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<svg class="w-8 h-8 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
 							</svg>
 							{#if nextEvo.trigger}
-								<span class="text-xs text-gray-500 text-center max-w-20">{nextEvo.trigger}</span>
+								<span class="text-xs text-gray-500 dark:text-gray-400 text-center max-w-20">{nextEvo.trigger}</span>
 							{/if}
 						</div>
 
 						<!-- Next Pokemon -->
 						<div class="flex flex-col items-center">
 							<a href="/pokemon/{nextEvo.id}" class="flex flex-col items-center group">
-								<div class="w-32 h-32 bg-gray-100 rounded-lg p-2 group-hover:shadow-lg transition-shadow">
+								<div class="w-32 h-32 bg-gray-100 dark:bg-gray-700 rounded-lg p-2 group-hover:shadow-lg dark:group-hover:shadow-gray-900/50 transition-shadow">
 									<img src={nextEvo.spriteUrl} alt={nextEvo.name} class="w-full h-full object-contain" />
 								</div>
-								<span class="text-sm font-medium mt-2 capitalize">{formatPokemonName(nextEvo.name)}</span>
+								<span class="text-sm font-medium mt-2 capitalize text-gray-900 dark:text-gray-100">{formatPokemonName(nextEvo.name)}</span>
 							</a>
 
 							<!-- Further evolutions (recursive) -->
@@ -96,18 +96,18 @@
 									{#each nextEvo.evolvesTo as finalEvo}
 										<div class="flex items-center gap-4">
 											<div class="flex flex-col items-center">
-												<svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+												<svg class="w-8 h-8 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 													<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
 												</svg>
 												{#if finalEvo.trigger}
-													<span class="text-xs text-gray-500 text-center max-w-20">{finalEvo.trigger}</span>
+													<span class="text-xs text-gray-500 dark:text-gray-400 text-center max-w-20">{finalEvo.trigger}</span>
 												{/if}
 											</div>
 											<a href="/pokemon/{finalEvo.id}" class="flex flex-col items-center group">
-												<div class="w-32 h-32 bg-gray-100 rounded-lg p-2 group-hover:shadow-lg transition-shadow">
+												<div class="w-32 h-32 bg-gray-100 dark:bg-gray-700 rounded-lg p-2 group-hover:shadow-lg dark:group-hover:shadow-gray-900/50 transition-shadow">
 													<img src={finalEvo.spriteUrl} alt={finalEvo.name} class="w-full h-full object-contain" />
 												</div>
-												<span class="text-sm font-medium mt-2 capitalize">{formatPokemonName(finalEvo.name)}</span>
+												<span class="text-sm font-medium mt-2 capitalize text-gray-900 dark:text-gray-100">{formatPokemonName(finalEvo.name)}</span>
 											</a>
 										</div>
 									{/each}

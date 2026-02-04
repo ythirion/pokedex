@@ -35,7 +35,7 @@
 	<!-- Badge favori -->
 	<button
 		on:click={toggleFavorite}
-		class="absolute top-3 right-3 z-20 p-2 rounded-full bg-white/90 backdrop-blur-sm shadow-lg hover:scale-110 transition-transform"
+		class="absolute top-3 right-3 z-20 p-2 rounded-full bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm shadow-lg hover:scale-110 transition-transform"
 		aria-label={isFavorite ? 'Retirer des favoris' : 'Ajouter aux favoris'}
 	>
 		<svg
@@ -43,6 +43,7 @@
 			class:text-red-500={isFavorite}
 			class:fill-current={isFavorite}
 			class:text-gray-400={!isFavorite}
+			class:dark:text-gray-500={!isFavorite}
 			viewBox="0 0 24 24"
 			fill="none"
 			stroke="currentColor"
@@ -58,14 +59,14 @@
 	<div class="relative z-10 p-3">
 		<div class="flex items-start justify-between mb-2">
 			<div class="flex-1">
-				<h3 class="text-xl font-bold text-gray-900 leading-tight">
+				<h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 leading-tight">
 					{pokemon.frenchName || pokemon.name}
 				</h3>
 				{#if pokemonData}
 					<div class="flex gap-1 mt-1">
 						{#each pokemonData.types as typeInfo}
 							<span
-								class="px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wide bg-white/80 text-gray-800"
+								class="px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wide bg-white/80 dark:bg-gray-700/80 text-gray-800 dark:text-gray-100"
 							>
 								{translateType(typeInfo.type.name)}
 							</span>
@@ -75,7 +76,7 @@
 			</div>
 			{#if pokemonData}
 				<div class="text-right ml-2">
-					<div class="text-xs font-semibold text-gray-600">PV</div>
+					<div class="text-xs font-semibold text-gray-600 dark:text-gray-400">PV</div>
 					<div class="text-2xl font-bold text-red-600">{hp}</div>
 				</div>
 			{/if}
@@ -100,26 +101,26 @@
 		</div>
 
 		<!-- Pied de carte -->
-		<div class="bg-white/80 backdrop-blur-sm rounded-lg p-2">
+		<div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-lg p-2">
 			<div class="text-center">
-				<div class="text-xs font-semibold text-gray-600 mb-1">N°{formatPokemonId(pokemon.id).replace('#', '')}</div>
+				<div class="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">N°{formatPokemonId(pokemon.id).replace('#', '')}</div>
 				{#if pokemonData}
 					<div class="flex justify-around text-xs">
 						<div>
-							<div class="font-bold text-gray-700">ATQ</div>
-							<div class="font-semibold text-gray-900">
+							<div class="font-bold text-gray-700 dark:text-gray-300">ATQ</div>
+							<div class="font-semibold text-gray-900 dark:text-gray-100">
 								{pokemonData.stats.find((s) => s.stat.name === 'attack')?.base_stat || 0}
 							</div>
 						</div>
 						<div>
-							<div class="font-bold text-gray-700">DÉF</div>
-							<div class="font-semibold text-gray-900">
+							<div class="font-bold text-gray-700 dark:text-gray-300">DÉF</div>
+							<div class="font-semibold text-gray-900 dark:text-gray-100">
 								{pokemonData.stats.find((s) => s.stat.name === 'defense')?.base_stat || 0}
 							</div>
 						</div>
 						<div>
-							<div class="font-bold text-gray-700">VIT</div>
-							<div class="font-semibold text-gray-900">
+							<div class="font-bold text-gray-700 dark:text-gray-300">VIT</div>
+							<div class="font-semibold text-gray-900 dark:text-gray-100">
 								{pokemonData.stats.find((s) => s.stat.name === 'speed')?.base_stat || 0}
 							</div>
 						</div>
