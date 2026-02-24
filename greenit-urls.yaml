@@ -1,0 +1,6 @@
+- name: 'Pokédex home'
+  url: 'http://localhost:5173/'
+- name: 'Herbizarre'
+  url: 'http://localhost:5173/pokemon/2'
+- name: 'Mes favoris'
+  url: 'http://localhost:5173/favorites'

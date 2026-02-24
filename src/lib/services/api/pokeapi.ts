@@ -1,6 +1,6 @@
 // Base PokeAPI client with caching
-import { BASE_URL } from '$lib/constants/api-config';
-import { cacheService } from './cache.service';
+import {BASE_URL} from '$lib/constants/api-config';
+import {cacheService} from './cache.service';
 
 class PokeAPIClient {
 	private readonly baseURL: string;
@@ -44,9 +44,8 @@ class PokeAPIClient {
 			}
 			throw new Error(`Failed to fetch ${endpoint}: Unknown error`);
 		}
-	}
-
-	/**
+    }
+    /**
 	 * Fetch from absolute URL (for pagination links)
 	 */
 	async getAbsolute<T>(url: string, useCache: boolean = true): Promise<T> {

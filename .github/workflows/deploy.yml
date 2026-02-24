@@ -36,6 +36,14 @@ jobs:
           BASE_PATH: '/${{ github.event.repository.name }}'
         run: npm run build
 
+      - name: Start frontend
+        run: |
+          npm run dev &
+          npx wait-on http://localhost:5173/
+
+      - name: GreenIT Analysis
+        uses: ythirion/greenit-analysis-action@0.1.0
+
       - name: Create 404.html for GitHub Pages
         run: cp build/200.html build/404.html
 
