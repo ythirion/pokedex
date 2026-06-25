@@ -15,6 +15,7 @@
 - Add git-cliff to update CHANGELOG in CI ([714e2dd](https://github.com/ythirion/pokedex/commit/714e2dd4ab56ec8825f846583e017384443dc2c1))
 - Improve CHANGELOG with commit links ([b9f5168](https://github.com/ythirion/pokedex/commit/b9f51684f1251bbc3bea1e68a06af21646dbe46e))
 - Add badges ([ed44dc3](https://github.com/ythirion/pokedex/commit/ed44dc367b3c1ad57dde9c882890d4fa103eceac))
+- Add url to test ([80b7c51](https://github.com/ythirion/pokedex/commit/80b7c51c44bbd353b5585e9cd8fb6769f0a40ce6))
 
 ### 🐛 Bug Fixes
 
@@ -34,3 +35,4 @@
 - Update CHANGELOG.md ([5cee5e3](https://github.com/ythirion/pokedex/commit/5cee5e35392b004b350668cff12c6fd637665db3))
 - Update CHANGELOG.md ([e4428b8](https://github.com/ythirion/pokedex/commit/e4428b8770713f8f1f986596530ba54854c1587d))
 - Update CHANGELOG.md ([d74a79b](https://github.com/ythirion/pokedex/commit/d74a79b4b10ed3ab38546b3676bf32812572ffab))
+- Update CHANGELOG.md ([c81abaa](https://github.com/ythirion/pokedex/commit/c81abaa5e65910eea865cf668759219f31428c53))
