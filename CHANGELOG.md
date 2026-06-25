@@ -19,6 +19,7 @@
 - Add playwright report as artefact ([42f1eca](https://github.com/ythirion/pokedex/commit/42f1eca07dfc6995421b518377c080a583b6419a))
 - Add badges for technical stack ([dc81453](https://github.com/ythirion/pokedex/commit/dc81453c28296f0747781ead3ee92a4ca1199021))
 - Update actions versions for node warns ([c9e0a98](https://github.com/ythirion/pokedex/commit/c9e0a98e4c30ddecfde0b4217ee5a8666d61a806))
+- Add husky for pre-commit hook ([4ed5be9](https://github.com/ythirion/pokedex/commit/4ed5be99a5b740fd0ac1f2476f32d527ac173b1d))
 
 ### 🐛 Bug Fixes
 
@@ -32,6 +33,8 @@
 - Green IT action version ([e674277](https://github.com/ythirion/pokedex/commit/e674277e5c25d8e2a5d8dbdcbe61bf75f896fc3e))
 - Observatory ([d5e4bca](https://github.com/ythirion/pokedex/commit/d5e4bca16d265a209b0c4b79c850b0cb5e80ca94))
 - Sonar action version ([8adb577](https://github.com/ythirion/pokedex/commit/8adb577e554088285dcfbcc7b4c2fc6333d4c3d2))
+- Playwright report ([752a67e](https://github.com/ythirion/pokedex/commit/752a67e94c94cfb5000b4f9eaf9d8abfceb26add))
+- Observatory report ([66219a7](https://github.com/ythirion/pokedex/commit/66219a7539dadf780270d9a75d0407fa78ec17ba))
 
 ### 📚 Documentation
 
@@ -42,3 +45,4 @@
 - Update CHANGELOG.md ([b6d68e4](https://github.com/ythirion/pokedex/commit/b6d68e4603faaab1955f04fd9957e20e6ceb95ef))
 - Update CHANGELOG.md ([15a86ba](https://github.com/ythirion/pokedex/commit/15a86bac4f472f7b6041ebad2d9780a566cd6ac0))
 - Update CHANGELOG.md ([197ad53](https://github.com/ythirion/pokedex/commit/197ad53736b501429484b8952b1c84f87868487a))
+- Update CHANGELOG.md ([c8068d2](https://github.com/ythirion/pokedex/commit/c8068d29583ee3009133395dceb17fda7da3c574))
