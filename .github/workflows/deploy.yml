@@ -115,7 +115,8 @@ jobs:
     steps:
       - name: Mozilla Observatory Scan
         run: |
-          RESULT=$(curl -s -X POST "https://observatory-api.mdn.mozilla.net/api/v2/scan?host=ythirion.github.io/pokedex/")
+          HOST=ythirion.github.io/pokedex/
+          RESULT=$(curl -s -X POST "https://observatory-api.mdn.mozilla.net/api/v2/scan?host=${HOST}")
           echo "$RESULT" | jq .
           mkdir -p observatory_results
           echo "$RESULT" | jq . > observatory_results/report.json
