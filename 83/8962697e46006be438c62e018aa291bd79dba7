@@ -1,0 +1,20 @@
+tests/accessibility.spec.ts
+  h_0a88d9aba8622a 1-14
+.gitignore
+  h_0a88d9aba8622a 27-29
+package.json
+  h_0a88d9aba8622a 12-17,20-21
+playwright.config.ts
+  h_0a88d9aba8622a 1-26
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.13",
+  "base_commit_sha": "838962697e46006be438c62e018aa291bd79dba7",
+  "prompts": {},
+  "humans": {
+    "h_0a88d9aba8622a": {
+      "author": "Yoan Thirion <yoan.thirion@gmail.com>"
+    }
+  }
+}
