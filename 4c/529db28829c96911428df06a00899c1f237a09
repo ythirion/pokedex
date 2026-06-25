@@ -1,0 +1,14 @@
+.github/workflows/deploy.yml
+  h_0a88d9aba8622a 118
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.2",
+  "base_commit_sha": "4c529db28829c96911428df06a00899c1f237a09",
+  "prompts": {},
+  "humans": {
+    "h_0a88d9aba8622a": {
+      "author": "Yoan Thirion <yoan.thirion@gmail.com>"
+    }
+  }
+}
