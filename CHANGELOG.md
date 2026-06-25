@@ -35,6 +35,7 @@
 - Sonar action version ([8adb577](https://github.com/ythirion/pokedex/commit/8adb577e554088285dcfbcc7b4c2fc6333d4c3d2))
 - Playwright report ([752a67e](https://github.com/ythirion/pokedex/commit/752a67e94c94cfb5000b4f9eaf9d8abfceb26add))
 - Observatory report ([66219a7](https://github.com/ythirion/pokedex/commit/66219a7539dadf780270d9a75d0407fa78ec17ba))
+- Observatory url ([e499443](https://github.com/ythirion/pokedex/commit/e499443547078eb6cac6d47d5dacecc5fff56b8c))
 
 ### 📚 Documentation
 
@@ -46,3 +47,4 @@
 - Update CHANGELOG.md ([15a86ba](https://github.com/ythirion/pokedex/commit/15a86bac4f472f7b6041ebad2d9780a566cd6ac0))
 - Update CHANGELOG.md ([197ad53](https://github.com/ythirion/pokedex/commit/197ad53736b501429484b8952b1c84f87868487a))
 - Update CHANGELOG.md ([c8068d2](https://github.com/ythirion/pokedex/commit/c8068d29583ee3009133395dceb17fda7da3c574))
+- Update CHANGELOG.md ([5f7840a](https://github.com/ythirion/pokedex/commit/5f7840a12696a4a9d6b97446d90576eeac4e7a18))
