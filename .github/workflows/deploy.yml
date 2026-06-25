@@ -48,7 +48,7 @@ jobs:
         run: npm run test:accessibility
 
       - name: GreenIT Analysis
-        uses: ythirion/greenit-analysis-action@0.1.2
+        uses: ythirion/greenit-analysis-action@v0.1.2
 
       - name: Create 404.html for GitHub Pages
         run: cp build/200.html build/404.html
