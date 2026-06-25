@@ -36,6 +36,7 @@
 - Playwright report ([752a67e](https://github.com/ythirion/pokedex/commit/752a67e94c94cfb5000b4f9eaf9d8abfceb26add))
 - Observatory report ([66219a7](https://github.com/ythirion/pokedex/commit/66219a7539dadf780270d9a75d0407fa78ec17ba))
 - Observatory url ([e499443](https://github.com/ythirion/pokedex/commit/e499443547078eb6cac6d47d5dacecc5fff56b8c))
+- Observatory by hardcoding host ([ce36168](https://github.com/ythirion/pokedex/commit/ce36168699cec890a1fcc6e64f20cbbfd8702bef))
 
 ### 📚 Documentation
 
@@ -48,3 +49,4 @@
 - Update CHANGELOG.md ([197ad53](https://github.com/ythirion/pokedex/commit/197ad53736b501429484b8952b1c84f87868487a))
 - Update CHANGELOG.md ([c8068d2](https://github.com/ythirion/pokedex/commit/c8068d29583ee3009133395dceb17fda7da3c574))
 - Update CHANGELOG.md ([5f7840a](https://github.com/ythirion/pokedex/commit/5f7840a12696a4a9d6b97446d90576eeac4e7a18))
+- Update CHANGELOG.md ([3ff49d9](https://github.com/ythirion/pokedex/commit/3ff49d94c6b5d6924b169b59b38fb2d8e83cd0dc))
