@@ -1,0 +1,16 @@
+tests/accessibility.spec.ts
+  h_0a88d9aba8622a 1,4-5,12,14-18
+.gitignore
+  h_0a88d9aba8622a 30
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.13",
+  "base_commit_sha": "80b7c51c44bbd353b5585e9cd8fb6769f0a40ce6",
+  "prompts": {},
+  "humans": {
+    "h_0a88d9aba8622a": {
+      "author": "Yoan Thirion <yoan.thirion@gmail.com>"
+    }
+  }
+}
