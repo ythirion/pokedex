@@ -14,6 +14,7 @@
 - Add Observatory after deployment ([80b0d94](https://github.com/ythirion/pokedex/commit/80b0d94fc4bb4a8447aa756e3652831b271c8767))
 - Add git-cliff to update CHANGELOG in CI ([714e2dd](https://github.com/ythirion/pokedex/commit/714e2dd4ab56ec8825f846583e017384443dc2c1))
 - Improve CHANGELOG with commit links ([b9f5168](https://github.com/ythirion/pokedex/commit/b9f51684f1251bbc3bea1e68a06af21646dbe46e))
+- Add badges ([ed44dc3](https://github.com/ythirion/pokedex/commit/ed44dc367b3c1ad57dde9c882890d4fa103eceac))
 
 ### 🐛 Bug Fixes
 
@@ -30,3 +31,4 @@
 ### 📚 Documentation
 
 - Update CHANGELOG.md ([5cee5e3](https://github.com/ythirion/pokedex/commit/5cee5e35392b004b350668cff12c6fd637665db3))
+- Update CHANGELOG.md ([e4428b8](https://github.com/ythirion/pokedex/commit/e4428b8770713f8f1f986596530ba54854c1587d))
