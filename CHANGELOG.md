@@ -27,8 +27,10 @@
 - Accessibility issue (title) ([fe23778](https://github.com/ythirion/pokedex/commit/fe23778a6fa6b1630af1dd2cd8703c9348c3420e))
 - Green IT action version ([e674277](https://github.com/ythirion/pokedex/commit/e674277e5c25d8e2a5d8dbdcbe61bf75f896fc3e))
 - Observatory ([d5e4bca](https://github.com/ythirion/pokedex/commit/d5e4bca16d265a209b0c4b79c850b0cb5e80ca94))
+- Sonar action version ([8adb577](https://github.com/ythirion/pokedex/commit/8adb577e554088285dcfbcc7b4c2fc6333d4c3d2))
 
 ### 📚 Documentation
 
 - Update CHANGELOG.md ([5cee5e3](https://github.com/ythirion/pokedex/commit/5cee5e35392b004b350668cff12c6fd637665db3))
 - Update CHANGELOG.md ([e4428b8](https://github.com/ythirion/pokedex/commit/e4428b8770713f8f1f986596530ba54854c1587d))
+- Update CHANGELOG.md ([d74a79b](https://github.com/ythirion/pokedex/commit/d74a79b4b10ed3ab38546b3676bf32812572ffab))
