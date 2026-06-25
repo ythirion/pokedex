@@ -115,7 +115,7 @@ jobs:
     steps:
       - name: Mozilla Observatory Scan
         run: |
-          HOST=$(echo "${{ needs.deploy.outputs.page_url }}" | sed 's|https\?://||;s|/||g')
+          HOST=$(echo "${{ needs.deploy.outputs.page_url }}" | sed -E 's|https?://||' | cut -d'/' -f1)
           RESULT=$(curl -s -X POST "https://observatory-api.mdn.mozilla.net/api/v2/scan?host=${HOST}")
           echo "$RESULT" | jq .
           mkdir -p observatory_results
