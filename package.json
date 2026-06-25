@@ -9,9 +9,16 @@
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"test:accessibility": "playwright test --reporter=list",
+		"tests:debug": "playwright test --debug",
+		"tests:report": "playwright show-report",
+		"tests:headed": "playwright test --headed",
+		"codegen": "playwright codegen http://localhost:5173/"
 	},
 	"devDependencies": {
+		"@axe-core/playwright": "^4.12.1",
+		"@playwright/test": "^1.61.1",
 		"@sveltejs/adapter-auto": "^7.0.0",
 		"@sveltejs/adapter-static": "^3.0.10",
 		"@sveltejs/kit": "^2.50.1",
