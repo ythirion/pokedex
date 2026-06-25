@@ -71,6 +71,14 @@ jobs:
       - name: Accessibility tests
         run: npm run test:accessibility
 
+      - name: Upload Playwright Report
+        uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7
+
       - name: SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@v6
         env:
@@ -86,6 +94,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: 'build/'
+          retention-days: '1'
 
   deploy:
     needs: build
@@ -123,3 +132,4 @@ jobs:
         with:
           name: observatory-report
           path: observatory_results/
+          retention-days: 7
