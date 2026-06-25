@@ -17,6 +17,7 @@
 - Add badges ([ed44dc3](https://github.com/ythirion/pokedex/commit/ed44dc367b3c1ad57dde9c882890d4fa103eceac))
 - Add url to test ([80b7c51](https://github.com/ythirion/pokedex/commit/80b7c51c44bbd353b5585e9cd8fb6769f0a40ce6))
 - Add playwright report as artefact ([42f1eca](https://github.com/ythirion/pokedex/commit/42f1eca07dfc6995421b518377c080a583b6419a))
+- Add badges for technical stack ([dc81453](https://github.com/ythirion/pokedex/commit/dc81453c28296f0747781ead3ee92a4ca1199021))
 
 ### 🐛 Bug Fixes
 
@@ -38,3 +39,4 @@
 - Update CHANGELOG.md ([d74a79b](https://github.com/ythirion/pokedex/commit/d74a79b4b10ed3ab38546b3676bf32812572ffab))
 - Update CHANGELOG.md ([c81abaa](https://github.com/ythirion/pokedex/commit/c81abaa5e65910eea865cf668759219f31428c53))
 - Update CHANGELOG.md ([b6d68e4](https://github.com/ythirion/pokedex/commit/b6d68e4603faaab1955f04fd9957e20e6ceb95ef))
+- Update CHANGELOG.md ([15a86ba](https://github.com/ythirion/pokedex/commit/15a86bac4f472f7b6041ebad2d9780a566cd6ac0))
