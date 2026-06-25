@@ -1,0 +1,24 @@
+CHANGELOG.md
+  s_718ef8fc6d209f::t_47aea4870675d0 1-25
+cliff.toml
+  s_718ef8fc6d209f::t_d29a1c3fdd38a9 1-94
+.github/workflows/deploy.yml
+  s_718ef8fc6d209f::t_f4fa89fe6c479f 10
+  s_718ef8fc6d209f::t_718a83f6aac5bb 32-48
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.13",
+  "base_commit_sha": "714e2dd4ab56ec8825f846583e017384443dc2c1",
+  "prompts": {},
+  "sessions": {
+    "s_718ef8fc6d209f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c086dd1d-109d-45f4-88ad-386154c34fb0",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Yoan Thirion <yoan.thirion@gmail.com>"
+    }
+  }
+}
