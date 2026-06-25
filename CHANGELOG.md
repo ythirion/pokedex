@@ -13,6 +13,7 @@
 - Add gitleaks to detect secrets ([c6d9e65](https://github.com/ythirion/pokedex/commit/c6d9e655d47721694d229449b1c44471fc869f98))
 - Add Observatory after deployment ([80b0d94](https://github.com/ythirion/pokedex/commit/80b0d94fc4bb4a8447aa756e3652831b271c8767))
 - Add git-cliff to update CHANGELOG in CI ([714e2dd](https://github.com/ythirion/pokedex/commit/714e2dd4ab56ec8825f846583e017384443dc2c1))
+- Improve CHANGELOG with commit links ([b9f5168](https://github.com/ythirion/pokedex/commit/b9f51684f1251bbc3bea1e68a06af21646dbe46e))
 
 ### 🐛 Bug Fixes
 
@@ -24,3 +25,8 @@
 - Rm .idea/ ([ce57311](https://github.com/ythirion/pokedex/commit/ce573117c17e57dbf0f4f28a66e163a400a6e78e))
 - Accessibility issue (title) ([fe23778](https://github.com/ythirion/pokedex/commit/fe23778a6fa6b1630af1dd2cd8703c9348c3420e))
 - Green IT action version ([e674277](https://github.com/ythirion/pokedex/commit/e674277e5c25d8e2a5d8dbdcbe61bf75f896fc3e))
+- Observatory ([d5e4bca](https://github.com/ythirion/pokedex/commit/d5e4bca16d265a209b0c4b79c850b0cb5e80ca94))
+
+### 📚 Documentation
+
+- Update CHANGELOG.md ([5cee5e3](https://github.com/ythirion/pokedex/commit/5cee5e35392b004b350668cff12c6fd637665db3))
