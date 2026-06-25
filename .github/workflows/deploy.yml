@@ -69,7 +69,7 @@ jobs:
           npx wait-on http://localhost:5173/
 
       - name: Accessibility tests
-        run: npm run test:accessibility
+        run: npx playwright test --reporter=list,html
 
       - name: Upload Playwright Report
         uses: actions/upload-artifact@v6
