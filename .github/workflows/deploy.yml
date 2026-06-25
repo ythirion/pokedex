@@ -36,13 +36,19 @@ jobs:
           BASE_PATH: '/${{ github.event.repository.name }}'
         run: npm run build
 
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps chromium
+
       - name: Start frontend
         run: |
           npm run dev &
           npx wait-on http://localhost:5173/
 
+      - name: Accessibility tests
+        run: npm run test:accessibility
+
       - name: GreenIT Analysis
-        uses: ythirion/greenit-analysis-action@0.1.0
+        uses: ythirion/greenit-analysis-action@0.1.2
 
       - name: Create 404.html for GitHub Pages
         run: cp build/200.html build/404.html
