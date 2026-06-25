@@ -12,6 +12,7 @@
 - Add accessibility tests to CI
 - Add gitleaks to detect secrets
 - Add Observatory after deployment
+- Add git-cliff to update CHANGELOG in CI
 
 ### 🐛 Bug Fixes
 
