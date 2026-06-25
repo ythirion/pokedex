@@ -1,6 +1,15 @@
 # Pokédex Application
 
+[![Deploy to GitHub Pages](https://github.com/ythirion/pokedex/actions/workflows/deploy.yml/badge.svg)](https://github.com/ythirion/pokedex/actions/workflows/deploy.yml)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=ythirion_pokedex&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=ythirion_pokedex)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=ythirion_pokedex&metric=bugs)](https://sonarcloud.io/summary/new_code?id=ythirion_pokedex)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=ythirion_pokedex&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=ythirion_pokedex)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=ythirion_pokedex&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=ythirion_pokedex)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=ythirion_pokedex&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=ythirion_pokedex)
+
 A modern, full-featured Pokédex web application built with SvelteKit, TypeScript, and Tailwind CSS. Browse, search, and explore all 1000+ Pokémon with detailed information, evolution chains, and favorites management.
+
+![pokedex.webp](img/pokedex.webp)
 
 ## Features
 
