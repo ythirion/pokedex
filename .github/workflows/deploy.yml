@@ -71,6 +71,11 @@ jobs:
       - name: Accessibility tests
         run: npm run test:accessibility
 
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarqube-scan-action@v5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
       - name: GreenIT Analysis
         uses: ythirion/greenit-analysis-action@v0.1.2
 
@@ -99,10 +104,19 @@ jobs:
     needs: deploy
     runs-on: ubuntu-latest
     steps:
-      - name: Observatory Github Action
-        uses: simonireilly/observatory-github-action@v0.1.3
-        with:
-          web_host: ${{ needs.deploy.outputs.page_url }}
+      - name: Mozilla Observatory Scan
+        run: |
+          HOST=$(echo "${{ needs.deploy.outputs.page_url }}" | sed 's|https\?://||;s|/||g')
+          RESULT=$(curl -s "https://observatory-api.mdn.mozilla.net/api/v2/scan?host=${HOST}")
+          echo "$RESULT" | jq .
+          mkdir -p observatory_results
+          echo "$RESULT" | jq . > observatory_results/report.json
+          GRADE=$(echo "$RESULT" | jq -r '.grade // "N/A"')
+          SCORE=$(echo "$RESULT" | jq -r '.score // "N/A"')
+          echo "### Mozilla Observatory" >> $GITHUB_STEP_SUMMARY
+          echo "- **Host:** ${HOST}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Grade:** ${GRADE}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Score:** ${SCORE}/100" >> $GITHUB_STEP_SUMMARY
 
       - name: Upload Observatory Report
         uses: actions/upload-artifact@v4
