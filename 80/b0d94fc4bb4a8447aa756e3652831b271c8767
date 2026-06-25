@@ -1,0 +1,21 @@
+.github/workflows/deploy.yml
+  s_718ef8fc6d209f::t_f4063676e7a360 89-94
+  s_718ef8fc6d209f::t_cac3ac11ab8be0 74-75,80-84,87
+  s_718ef8fc6d209f::t_12d4005ec15ef0 85-86,88
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.13",
+  "base_commit_sha": "80b0d94fc4bb4a8447aa756e3652831b271c8767",
+  "prompts": {},
+  "sessions": {
+    "s_718ef8fc6d209f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c086dd1d-109d-45f4-88ad-386154c34fb0",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Yoan Thirion <yoan.thirion@gmail.com>"
+    }
+  }
+}
