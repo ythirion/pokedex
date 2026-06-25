@@ -1,4 +1,9 @@
 # Pokédex Application
+[![SvelteKit](https://img.shields.io/badge/SvelteKit-FF3E00?logo=svelte&logoColor=white)](https://svelte.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
+[![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white)](https://vite.dev)
+[![Playwright](https://img.shields.io/badge/Playwright-2EAD33?logo=playwright&logoColor=white)](https://playwright.dev)
 
 [![Deploy to GitHub Pages](https://github.com/ythirion/pokedex/actions/workflows/deploy.yml/badge.svg)](https://github.com/ythirion/pokedex/actions/workflows/deploy.yml)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=ythirion_pokedex&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=ythirion_pokedex)
@@ -6,6 +11,9 @@
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=ythirion_pokedex&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=ythirion_pokedex)
 [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=ythirion_pokedex&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=ythirion_pokedex)
 [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=ythirion_pokedex&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=ythirion_pokedex)
+
+[![Built with Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code-blueviolet?logo=anthropic)](https://claude.ai/code)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A modern, full-featured Pokédex web application built with SvelteKit, TypeScript, and Tailwind CSS. Browse, search, and explore all 1000+ Pokémon with detailed information, evolution chains, and favorites management.
 
