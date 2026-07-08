@@ -20,6 +20,7 @@
 - Add badges for technical stack ([dc81453](https://github.com/ythirion/pokedex/commit/dc81453c28296f0747781ead3ee92a4ca1199021))
 - Update actions versions for node warns ([c9e0a98](https://github.com/ythirion/pokedex/commit/c9e0a98e4c30ddecfde0b4217ee5a8666d61a806))
 - Add husky for pre-commit hook ([4ed5be9](https://github.com/ythirion/pokedex/commit/4ed5be99a5b740fd0ac1f2476f32d527ac173b1d))
+- Add biome ([af62527](https://github.com/ythirion/pokedex/commit/af62527a9759433d23ade70e26d01d59ef18d17d))
 
 ### 🐛 Bug Fixes
 
@@ -38,6 +39,8 @@
 - Observatory url ([e499443](https://github.com/ythirion/pokedex/commit/e499443547078eb6cac6d47d5dacecc5fff56b8c))
 - Observatory by hardcoding host ([ce36168](https://github.com/ythirion/pokedex/commit/ce36168699cec890a1fcc6e64f20cbbfd8702bef))
 - Observatory by hardcoding host ([239826d](https://github.com/ythirion/pokedex/commit/239826d779a58a9b94c03c96d6ef3c377e1200b6))
+- Playwright config ([e811afa](https://github.com/ythirion/pokedex/commit/e811afa885167f2997bb795689e3bf13e2d69b94))
+- Biome issues ([5dc8673](https://github.com/ythirion/pokedex/commit/5dc867316a01d4a4f1818f5b8aaf4c0718bd69ba))
 
 ### 📚 Documentation
 
@@ -52,3 +55,4 @@
 - Update CHANGELOG.md ([5f7840a](https://github.com/ythirion/pokedex/commit/5f7840a12696a4a9d6b97446d90576eeac4e7a18))
 - Update CHANGELOG.md ([3ff49d9](https://github.com/ythirion/pokedex/commit/3ff49d94c6b5d6924b169b59b38fb2d8e83cd0dc))
 - Update CHANGELOG.md ([7db5282](https://github.com/ythirion/pokedex/commit/7db5282e6a9a9afd1e7532228de94f1ed10354c6))
+- Update CHANGELOG.md ([21eb57b](https://github.com/ythirion/pokedex/commit/21eb57b1d4e8f79b101af94fc3a02baa2d5011eb))
