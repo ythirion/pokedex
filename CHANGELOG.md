@@ -42,6 +42,7 @@
 - Playwright config ([e811afa](https://github.com/ythirion/pokedex/commit/e811afa885167f2997bb795689e3bf13e2d69b94))
 - Biome issues ([5dc8673](https://github.com/ythirion/pokedex/commit/5dc867316a01d4a4f1818f5b8aaf4c0718bd69ba))
 - Ci ([b9b1c8c](https://github.com/ythirion/pokedex/commit/b9b1c8c0d1a54859773a3885b2ae6eef75271d08))
+- Ci to run frontend before green-it ([17e2661](https://github.com/ythirion/pokedex/commit/17e2661b71f3c959e2d9cffe45928def86d585d2))
 
 ### 📚 Documentation
 
@@ -58,3 +59,4 @@
 - Update CHANGELOG.md ([7db5282](https://github.com/ythirion/pokedex/commit/7db5282e6a9a9afd1e7532228de94f1ed10354c6))
 - Update CHANGELOG.md ([21eb57b](https://github.com/ythirion/pokedex/commit/21eb57b1d4e8f79b101af94fc3a02baa2d5011eb))
 - Update CHANGELOG.md ([a6c232b](https://github.com/ythirion/pokedex/commit/a6c232b511f741b8c2b59d07bc936de21f5850a9))
+- Update CHANGELOG.md ([8b4daca](https://github.com/ythirion/pokedex/commit/8b4dacacbdb410f5c7a2d6ce3c9bb44daec66f6f))
