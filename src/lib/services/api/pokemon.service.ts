@@ -13,7 +13,7 @@ import { pokeAPIClient } from "./pokeapi";
  */
 export function extractIdFromUrl(url: string): number {
 	const matches = url.match(/\/pokemon\/(\d+)\//);
-	if (!matches || !matches[1]) {
+	if (!matches?.[1]) {
 		throw new Error(`Could not extract ID from URL: ${url}`);
 	}
 	return parseInt(matches[1], 10);

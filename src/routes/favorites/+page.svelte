@@ -50,7 +50,9 @@ async function loadFavorites() {
 
 		const speciesData = await Promise.all(speciesPromises);
 		const speciesMap = new Map(
-			speciesData.filter((s) => s !== null).map((s) => [s!.id, s!]),
+			speciesData
+				.filter((s): s is NonNullable<typeof s> => s !== null)
+				.map((s) => [s.id, s]),
 		);
 
 		favoritePokemon = favoriteIds

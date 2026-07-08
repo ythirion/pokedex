@@ -62,12 +62,14 @@ export function extractEvolutionIds(chain: EvolutionChain): number[] {
 	function traverse(link: EvolutionChain["chain"]) {
 		// Extract ID from species URL
 		const matches = link.species.url.match(/\/pokemon-species\/(\d+)\//);
-		if (matches && matches[1]) {
+		if (matches?.[1]) {
 			ids.push(parseInt(matches[1], 10));
 		}
 
 		// Recursively traverse evolves_to
-		link.evolves_to.forEach((evolution) => traverse(evolution));
+		link.evolves_to.forEach((evolution) => {
+			traverse(evolution);
+		});
 	}
 
 	traverse(chain.chain);

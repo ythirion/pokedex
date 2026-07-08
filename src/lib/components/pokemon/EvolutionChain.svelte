@@ -38,7 +38,17 @@ function getEvolutionTrigger(link: ChainLink): string {
 	return parts.join(", ") || detail.trigger.name;
 }
 
-function renderChainLink(link: ChainLink, depth: number = 0): any {
+interface RenderedEvolution {
+	id: number;
+	name: string;
+	spriteUrl: string;
+	evolvesTo: (RenderedEvolution & { trigger: string })[];
+}
+
+function renderChainLink(
+	link: ChainLink,
+	depth: number = 0,
+): RenderedEvolution {
 	const speciesId = extractIdFromUrl(link.species.url);
 	const spriteUrl = getPokemonSpriteUrl(speciesId, "official-artwork");
 
@@ -54,10 +64,6 @@ function renderChainLink(link: ChainLink, depth: number = 0): any {
 }
 
 $: evolutionData = renderChainLink(chain.chain);
-
-function renderEvolution(data: any): any {
-	return { data };
-}
 </script>
 
 <div class="flex items-center justify-center flex-wrap gap-4">

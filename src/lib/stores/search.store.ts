@@ -1,5 +1,5 @@
 // Search store with debouncing
-import { derived, writable } from "svelte/store";
+import { writable } from "svelte/store";
 import { DEBOUNCE_DELAY } from "$lib/constants/api-config";
 import { debounce } from "$lib/utils/debounce";
 

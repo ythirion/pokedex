@@ -15,10 +15,7 @@ import {
 	totalPages,
 } from "$lib/stores/pokemon.store";
 import { searchStore } from "$lib/stores/search.store";
-import type {
-	EnrichedPokemon,
-	PokemonMetadata,
-} from "$lib/types/pokemon.types";
+import type { EnrichedPokemon } from "$lib/types/pokemon.types";
 import {
 	applyClientSideFilters,
 	calculateTotalPages,

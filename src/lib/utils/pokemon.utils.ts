@@ -6,7 +6,7 @@ import { SPRITES_BASE } from "$lib/constants/api-config";
  */
 export function extractPokemonId(url: string): number {
 	const matches = url.match(/\/(\d+)\//);
-	if (!matches || !matches[1]) {
+	if (!matches?.[1]) {
 		throw new Error(`Could not extract ID from URL: ${url}`);
 	}
 	return parseInt(matches[1], 10);
