@@ -1,60 +1,63 @@
 <script lang="ts">
-	import { base } from '$app/paths';
-	import type { EvolutionChain, ChainLink } from '$lib/types/species.types';
-	import { formatPokemonName, getPokemonSpriteUrl } from '$lib/utils/pokemon.utils';
+import { base } from "$app/paths";
+import type { ChainLink, EvolutionChain } from "$lib/types/species.types";
+import {
+	formatPokemonName,
+	getPokemonSpriteUrl,
+} from "$lib/utils/pokemon.utils";
 
-	export let chain: EvolutionChain;
+export let chain: EvolutionChain;
 
-	function extractIdFromUrl(url: string): number {
-		const matches = url.match(/\/(\d+)\//);
-		return matches ? parseInt(matches[1], 10) : 0;
+function extractIdFromUrl(url: string): number {
+	const matches = url.match(/\/(\d+)\//);
+	return matches ? parseInt(matches[1], 10) : 0;
+}
+
+function getEvolutionTrigger(link: ChainLink): string {
+	if (link.evolution_details.length === 0) return "";
+
+	const detail = link.evolution_details[0];
+	const parts: string[] = [];
+
+	if (detail.min_level) {
+		parts.push(`Level ${detail.min_level}`);
 	}
 
-	function getEvolutionTrigger(link: ChainLink): string {
-		if (link.evolution_details.length === 0) return '';
-
-		const detail = link.evolution_details[0];
-		const parts: string[] = [];
-
-		if (detail.min_level) {
-			parts.push(`Level ${detail.min_level}`);
-		}
-
-		if (detail.item) {
-			parts.push(formatPokemonName(detail.item.name));
-		}
-
-		if (detail.min_happiness) {
-			parts.push(`Happiness ${detail.min_happiness}`);
-		}
-
-		if (detail.trigger.name === 'trade') {
-			parts.push('Trade');
-		}
-
-		return parts.join(', ') || detail.trigger.name;
+	if (detail.item) {
+		parts.push(formatPokemonName(detail.item.name));
 	}
 
-	function renderChainLink(link: ChainLink, depth: number = 0): any {
-		const speciesId = extractIdFromUrl(link.species.url);
-		const spriteUrl = getPokemonSpriteUrl(speciesId, 'official-artwork');
-
-		return {
-			id: speciesId,
-			name: link.species.name,
-			spriteUrl,
-			evolvesTo: link.evolves_to.map((evo) => ({
-				...renderChainLink(evo, depth + 1),
-				trigger: getEvolutionTrigger(evo)
-			}))
-		};
+	if (detail.min_happiness) {
+		parts.push(`Happiness ${detail.min_happiness}`);
 	}
 
-	$: evolutionData = renderChainLink(chain.chain);
-
-	function renderEvolution(data: any): any {
-		return { data };
+	if (detail.trigger.name === "trade") {
+		parts.push("Trade");
 	}
+
+	return parts.join(", ") || detail.trigger.name;
+}
+
+function renderChainLink(link: ChainLink, depth: number = 0): any {
+	const speciesId = extractIdFromUrl(link.species.url);
+	const spriteUrl = getPokemonSpriteUrl(speciesId, "official-artwork");
+
+	return {
+		id: speciesId,
+		name: link.species.name,
+		spriteUrl,
+		evolvesTo: link.evolves_to.map((evo) => ({
+			...renderChainLink(evo, depth + 1),
+			trigger: getEvolutionTrigger(evo),
+		})),
+	};
+}
+
+$: evolutionData = renderChainLink(chain.chain);
+
+function renderEvolution(data: any): any {
+	return { data };
+}
 </script>
 
 <div class="flex items-center justify-center flex-wrap gap-4">

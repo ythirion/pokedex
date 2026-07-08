@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { themeStore } from '$lib/stores/theme.store';
+import { themeStore } from "$lib/stores/theme.store";
 
-	function handleToggle() {
-		themeStore.toggleTheme();
-	}
+function handleToggle() {
+	themeStore.toggleTheme();
+}
 
-	$: isDark = $themeStore.current === 'dark';
+$: isDark = $themeStore.current === "dark";
 </script>
 
 <button

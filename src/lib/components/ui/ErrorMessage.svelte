@@ -1,6 +1,6 @@
 <script lang="ts">
-	export let message: string;
-	export let retry: (() => void) | null = null;
+export let message: string;
+export let retry: (() => void) | null = null;
 </script>
 
 <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-6 text-center transition-colors">

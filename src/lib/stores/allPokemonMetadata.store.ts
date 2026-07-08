@@ -1,15 +1,18 @@
 // Store for all Pokemon metadata (for client-side filtering)
-import { writable, derived } from 'svelte/store';
-import type { PokemonMetadata } from '$lib/types/pokemon.types';
-import type { PokemonTypeString } from '$lib/types/common.types';
-import { getPokemonList, getPokemonById } from '$lib/services/api/pokemon.service';
-import { getSpeciesById } from '$lib/services/api/species.service';
+import { derived, writable } from "svelte/store";
 import {
+	getPokemonById,
+	getPokemonList,
+} from "$lib/services/api/pokemon.service";
+import { getSpeciesById } from "$lib/services/api/species.service";
+import {
+	clearMetadataCache as clearCache,
 	getMetadataFromCache,
 	setMetadataInCache,
-	clearMetadataCache as clearCache
-} from '$lib/services/storage/metadataCache';
-import { getGenerationNumber } from '$lib/utils/filterUtils';
+} from "$lib/services/storage/metadataCache";
+import type { PokemonTypeString } from "$lib/types/common.types";
+import type { PokemonMetadata } from "$lib/types/pokemon.types";
+import { getGenerationNumber } from "$lib/utils/filterUtils";
 
 interface MetadataState {
 	allPokemon: PokemonMetadata[];
@@ -24,7 +27,7 @@ const initialState: MetadataState = {
 	isLoading: false,
 	isLoaded: false,
 	error: null,
-	lastFetched: 0
+	lastFetched: 0,
 };
 
 function createAllPokemonMetadataStore() {
@@ -60,7 +63,7 @@ function createAllPokemonMetadataStore() {
 						allPokemon: cached,
 						isLoading: false,
 						isLoaded: true,
-						lastFetched: Date.now()
+						lastFetched: Date.now(),
 					}));
 					return;
 				}
@@ -81,15 +84,17 @@ function createAllPokemonMetadataStore() {
 								// Fetch Pokemon and Species data in parallel
 								const [pokemon, species] = await Promise.all([
 									getPokemonById(item.id),
-									getSpeciesById(item.id)
+									getSpeciesById(item.id),
 								]);
 
 								// Extract types
-								const types = pokemon.types.map((t) => t.type.name as PokemonTypeString);
+								const types = pokemon.types.map(
+									(t) => t.type.name as PokemonTypeString,
+								);
 
 								// Get French name
 								const frenchName =
-									species.names.find((n) => n.language.name === 'fr')?.name ||
+									species.names.find((n) => n.language.name === "fr")?.name ||
 									pokemon.name;
 
 								// Calculate generation
@@ -102,7 +107,7 @@ function createAllPokemonMetadataStore() {
 									isLegendary: species.is_legendary,
 									isMythical: species.is_mythical,
 									types,
-									generation
+									generation,
 								};
 
 								return metadata;
@@ -113,10 +118,10 @@ function createAllPokemonMetadataStore() {
 									id: item.id,
 									name: item.name,
 									types: [],
-									generation: getGenerationNumber(item.id)
+									generation: getGenerationNumber(item.id),
 								} as PokemonMetadata;
 							}
-						})
+						}),
 					);
 
 					allMetadata.push(...batchMetadata);
@@ -124,7 +129,7 @@ function createAllPokemonMetadataStore() {
 					// Update progress
 					update((state) => ({
 						...state,
-						allPokemon: allMetadata
+						allPokemon: allMetadata,
 					}));
 				}
 
@@ -135,15 +140,17 @@ function createAllPokemonMetadataStore() {
 					...state,
 					isLoading: false,
 					isLoaded: true,
-					lastFetched: Date.now()
+					lastFetched: Date.now(),
 				}));
 			} catch (error) {
 				const errorMessage =
-					error instanceof Error ? error.message : 'Failed to load Pokemon metadata';
+					error instanceof Error
+						? error.message
+						: "Failed to load Pokemon metadata";
 				update((state) => ({
 					...state,
 					isLoading: false,
-					error: errorMessage
+					error: errorMessage,
 				}));
 			}
 		},
@@ -159,7 +166,7 @@ function createAllPokemonMetadataStore() {
 		/**
 		 * Reset store to initial state
 		 */
-		reset: () => set(initialState)
+		reset: () => set(initialState),
 	};
 }
 
@@ -172,5 +179,5 @@ export const getMetadataById = derived(
 	allPokemonMetadata,
 	($store) => (id: number) => {
 		return $store.allPokemon.find((p) => p.id === id);
-	}
+	},
 );

@@ -1,5 +1,5 @@
 // Pokemon Species and Evolution types from PokeAPI
-import type { NamedAPIResource } from './common.types';
+import type { NamedAPIResource } from "./common.types";
 
 export interface FlavorTextEntry {
 	flavor_text: string;

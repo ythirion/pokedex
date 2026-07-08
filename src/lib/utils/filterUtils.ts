@@ -1,7 +1,8 @@
 // Utility functions for client-side filtering of Pokemon
-import type { PokemonMetadata } from '$lib/types/pokemon.types';
-import type { PokemonTypeString } from '$lib/types/common.types';
-import { getGenerationById } from '$lib/constants/generations';
+
+import { getGenerationById } from "$lib/constants/generations";
+import type { PokemonTypeString } from "$lib/types/common.types";
+import type { PokemonMetadata } from "$lib/types/pokemon.types";
 
 export interface FilterCriteria {
 	types: PokemonTypeString[];
@@ -15,7 +16,7 @@ export interface FilterCriteria {
  */
 export function applyClientSideFilters(
 	metadata: PokemonMetadata[],
-	criteria: FilterCriteria
+	criteria: FilterCriteria,
 ): PokemonMetadata[] {
 	let result = metadata;
 
@@ -25,14 +26,14 @@ export function applyClientSideFilters(
 		result = result.filter(
 			(p) =>
 				p.name.toLowerCase().includes(query) ||
-				p.frenchName?.toLowerCase().includes(query)
+				p.frenchName?.toLowerCase().includes(query),
 		);
 	}
 
 	// Filter by types (Pokemon must have ALL selected types)
 	if (criteria.types.length > 0) {
 		result = result.filter((p) =>
-			criteria.types.every((type) => p.types.includes(type))
+			criteria.types.every((type) => p.types.includes(type)),
 		);
 	}
 
@@ -55,7 +56,7 @@ export function applyClientSideFilters(
 export function paginateResults<T>(
 	results: T[],
 	page: number,
-	pageSize: number
+	pageSize: number,
 ): T[] {
 	const startIndex = (page - 1) * pageSize;
 	const endIndex = startIndex + pageSize;
@@ -65,7 +66,10 @@ export function paginateResults<T>(
 /**
  * Calculate total pages for pagination
  */
-export function calculateTotalPages(totalItems: number, pageSize: number): number {
+export function calculateTotalPages(
+	totalItems: number,
+	pageSize: number,
+): number {
 	return Math.ceil(totalItems / pageSize);
 }
 

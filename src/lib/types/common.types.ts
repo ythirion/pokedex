@@ -6,24 +6,24 @@ export interface NamedAPIResource {
 }
 
 export type PokemonTypeString =
-	| 'normal'
-	| 'fire'
-	| 'water'
-	| 'electric'
-	| 'grass'
-	| 'ice'
-	| 'fighting'
-	| 'poison'
-	| 'ground'
-	| 'flying'
-	| 'psychic'
-	| 'bug'
-	| 'rock'
-	| 'ghost'
-	| 'dragon'
-	| 'dark'
-	| 'steel'
-	| 'fairy';
+	| "normal"
+	| "fire"
+	| "water"
+	| "electric"
+	| "grass"
+	| "ice"
+	| "fighting"
+	| "poison"
+	| "ground"
+	| "flying"
+	| "psychic"
+	| "bug"
+	| "rock"
+	| "ghost"
+	| "dragon"
+	| "dark"
+	| "steel"
+	| "fairy";
 
 export interface Generation {
 	id: number;

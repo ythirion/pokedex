@@ -1,6 +1,6 @@
 // Filters store for type and generation filtering
-import { writable } from 'svelte/store';
-import type { PokemonTypeString } from '$lib/types/common.types';
+import { writable } from "svelte/store";
+import type { PokemonTypeString } from "$lib/types/common.types";
 
 interface FiltersState {
 	types: PokemonTypeString[];
@@ -11,7 +11,7 @@ interface FiltersState {
 const initialState: FiltersState = {
 	types: [],
 	generation: null,
-	legendaryOnly: false
+	legendaryOnly: false,
 };
 
 function createFiltersStore() {
@@ -58,7 +58,7 @@ function createFiltersStore() {
 		 */
 		clear: () => {
 			set(initialState);
-		}
+		},
 	};
 }
 

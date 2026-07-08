@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { page } from '$app/stores';
-	import PokemonDetail from '$lib/components/pokemon/PokemonDetail.svelte';
+import { page } from "$app/stores";
+import PokemonDetail from "$lib/components/pokemon/PokemonDetail.svelte";
 
-	$: id = parseInt($page.params.id || '1', 10);
+$: id = parseInt($page.params.id || "1", 10);
 </script>
 
 <svelte:head>

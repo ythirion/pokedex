@@ -1,6 +1,11 @@
 // Pokemon API service
-import { pokeAPIClient } from './pokeapi';
-import type { Pokemon, PokemonListResponse, PokemonListItem } from '$lib/types/pokemon.types';
+
+import type {
+	Pokemon,
+	PokemonListItem,
+	PokemonListResponse,
+} from "$lib/types/pokemon.types";
+import { pokeAPIClient } from "./pokeapi";
 
 /**
  * Extract Pokemon ID from PokeAPI URL
@@ -19,7 +24,7 @@ export function extractIdFromUrl(url: string): number {
  */
 export async function getPokemonList(
 	limit: number = 20,
-	offset: number = 0
+	offset: number = 0,
 ): Promise<PokemonListResponse> {
 	const endpoint = `/pokemon?limit=${limit}&offset=${offset}`;
 	const response = await pokeAPIClient.get<{
@@ -32,12 +37,12 @@ export async function getPokemonList(
 	// Enrich results with IDs
 	const results: PokemonListItem[] = response.results.map((item) => ({
 		...item,
-		id: extractIdFromUrl(item.url)
+		id: extractIdFromUrl(item.url),
 	}));
 
 	return {
 		...response,
-		results
+		results,
 	};
 }
 
@@ -61,7 +66,9 @@ export async function getPokemonByName(name: string): Promise<Pokemon> {
  * Batch fetch Pokemon by IDs
  * Returns a Map of id -> Pokemon
  */
-export async function getPokemonBatch(ids: number[]): Promise<Map<number, Pokemon>> {
+export async function getPokemonBatch(
+	ids: number[],
+): Promise<Map<number, Pokemon>> {
 	const results = new Map<number, Pokemon>();
 
 	// Fetch all in parallel
@@ -83,7 +90,10 @@ export async function getPokemonBatch(ids: number[]): Promise<Map<number, Pokemo
  * Search Pokemon by name (partial match)
  * Note: PokeAPI doesn't support search, so we need to fetch the list first
  */
-export async function searchPokemonByName(query: string, limit: number = 10): Promise<PokemonListItem[]> {
+export async function searchPokemonByName(
+	query: string,
+	limit: number = 10,
+): Promise<PokemonListItem[]> {
 	// For a full implementation, you'd need to fetch all Pokemon names first
 	// For now, we'll fetch a large list and filter client-side
 	const response = await getPokemonList(1000, 0);

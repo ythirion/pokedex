@@ -1,5 +1,5 @@
 // Pokemon utility functions
-import { SPRITES_BASE } from '$lib/constants/api-config';
+import { SPRITES_BASE } from "$lib/constants/api-config";
 
 /**
  * Extract Pokemon ID from PokeAPI URL
@@ -18,9 +18,9 @@ export function extractPokemonId(url: string): number {
  */
 export function formatPokemonName(name: string): string {
 	return name
-		.split('-')
+		.split("-")
 		.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-		.join(' ');
+		.join(" ");
 }
 
 /**
@@ -28,7 +28,7 @@ export function formatPokemonName(name: string): string {
  * Example: 1 -> "#001", 25 -> "#025"
  */
 export function formatPokemonId(id: number): string {
-	return `#${id.toString().padStart(3, '0')}`;
+	return `#${id.toString().padStart(3, "0")}`;
 }
 
 /**
@@ -36,13 +36,13 @@ export function formatPokemonId(id: number): string {
  */
 export function getPokemonSpriteUrl(
 	id: number,
-	variant: 'default' | 'shiny' | 'official-artwork' = 'default'
+	variant: "default" | "shiny" | "official-artwork" = "default",
 ): string {
-	if (variant === 'official-artwork') {
+	if (variant === "official-artwork") {
 		return `${SPRITES_BASE}/other/official-artwork/${id}.png`;
 	}
 
-	if (variant === 'shiny') {
+	if (variant === "shiny") {
 		return `${SPRITES_BASE}/shiny/${id}.png`;
 	}
 
@@ -54,12 +54,12 @@ export function getPokemonSpriteUrl(
  */
 export function getStatName(statName: string): string {
 	const nameMap: Record<string, string> = {
-		hp: 'PV',
-		attack: 'Attaque',
-		defense: 'Défense',
-		'special-attack': 'Atq. Spé',
-		'special-defense': 'Déf. Spé',
-		speed: 'Vitesse'
+		hp: "PV",
+		attack: "Attaque",
+		defense: "Défense",
+		"special-attack": "Atq. Spé",
+		"special-defense": "Déf. Spé",
+		speed: "Vitesse",
 	};
 
 	return nameMap[statName] || statName;
@@ -68,9 +68,11 @@ export function getStatName(statName: string): string {
 /**
  * Get French name from Pokemon species data
  */
-export function getFrenchName(names: Array<{ name: string; language: { name: string } }>): string {
-	const frenchName = names.find((n) => n.language.name === 'fr');
-	return frenchName ? frenchName.name : '';
+export function getFrenchName(
+	names: Array<{ name: string; language: { name: string } }>,
+): string {
+	const frenchName = names.find((n) => n.language.name === "fr");
+	return frenchName ? frenchName.name : "";
 }
 
 /**
@@ -78,15 +80,15 @@ export function getFrenchName(names: Array<{ name: string; language: { name: str
  */
 export function getStatColor(statName: string): string {
 	const colorMap: Record<string, string> = {
-		hp: 'bg-green-500',
-		attack: 'bg-red-500',
-		defense: 'bg-blue-500',
-		'special-attack': 'bg-purple-500',
-		'special-defense': 'bg-yellow-500',
-		speed: 'bg-pink-500'
+		hp: "bg-green-500",
+		attack: "bg-red-500",
+		defense: "bg-blue-500",
+		"special-attack": "bg-purple-500",
+		"special-defense": "bg-yellow-500",
+		speed: "bg-pink-500",
 	};
 
-	return colorMap[statName] || 'bg-gray-500';
+	return colorMap[statName] || "bg-gray-500";
 }
 
 /**

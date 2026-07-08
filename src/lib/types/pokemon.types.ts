@@ -1,5 +1,5 @@
 // Pokemon types from PokeAPI
-import type { NamedAPIResource, PokemonTypeString } from './common.types';
+import type { NamedAPIResource, PokemonTypeString } from "./common.types";
 
 export interface PokemonListItem {
 	name: string;
@@ -24,7 +24,7 @@ export interface PokemonSprites {
 	back_female: string | null;
 	back_shiny_female: string | null;
 	other?: {
-		'official-artwork'?: {
+		"official-artwork"?: {
 			front_default: string | null;
 			front_shiny: string | null;
 		};

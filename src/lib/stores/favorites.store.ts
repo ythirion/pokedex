@@ -1,6 +1,9 @@
 // Favorites store with localStorage sync
-import { writable } from 'svelte/store';
-import { getFavorites, saveFavorites } from '$lib/services/storage/favorites.service';
+import { writable } from "svelte/store";
+import {
+	getFavorites,
+	saveFavorites,
+} from "$lib/services/storage/favorites.service";
 
 function createFavoritesStore() {
 	// Initialize from localStorage
@@ -72,7 +75,7 @@ function createFavoritesStore() {
 		load: () => {
 			const favorites = getFavorites();
 			set(favorites);
-		}
+		},
 	};
 }
 

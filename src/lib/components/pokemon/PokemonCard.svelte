@@ -1,25 +1,25 @@
 <script lang="ts">
-	import { base } from '$app/paths';
-	import type { EnrichedPokemon } from '$lib/types/pokemon.types';
-	import { formatPokemonId, getPokemonSpriteUrl } from '$lib/utils/pokemon.utils';
-	import { getTypeColors, translateType } from '$lib/utils/type-colors';
-	import { favoritesStore } from '$lib/stores/favorites.store';
+import { base } from "$app/paths";
+import { favoritesStore } from "$lib/stores/favorites.store";
+import type { EnrichedPokemon } from "$lib/types/pokemon.types";
+import { formatPokemonId, getPokemonSpriteUrl } from "$lib/utils/pokemon.utils";
+import { getTypeColors, translateType } from "$lib/utils/type-colors";
 
-	export let pokemon: EnrichedPokemon;
-	export let isFavorite: boolean = false;
-	export let isLegendary: boolean = false;
+export let pokemon: EnrichedPokemon;
+export let isFavorite: boolean = false;
+export let isLegendary: boolean = false;
 
-	function toggleFavorite(e: MouseEvent) {
-		e.preventDefault();
-		e.stopPropagation();
-		favoritesStore.toggle(pokemon.id);
-	}
+function toggleFavorite(e: MouseEvent) {
+	e.preventDefault();
+	e.stopPropagation();
+	favoritesStore.toggle(pokemon.id);
+}
 
-	$: spriteUrl = getPokemonSpriteUrl(pokemon.id, 'official-artwork');
-	$: pokemonData = pokemon.pokemon;
-	$: mainType = pokemonData?.types[0]?.type.name || 'normal';
-	$: typeColors = getTypeColors(mainType);
-	$: hp = pokemonData?.stats.find((s) => s.stat.name === 'hp')?.base_stat || 0;
+$: spriteUrl = getPokemonSpriteUrl(pokemon.id, "official-artwork");
+$: pokemonData = pokemon.pokemon;
+$: mainType = pokemonData?.types[0]?.type.name || "normal";
+$: typeColors = getTypeColors(mainType);
+$: hp = pokemonData?.stats.find((s) => s.stat.name === "hp")?.base_stat || 0;
 </script>
 
 <a

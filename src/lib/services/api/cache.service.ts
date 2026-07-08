@@ -1,5 +1,5 @@
 // In-memory cache service with LRU eviction
-import { CACHE_MAX_SIZE, CACHE_TTL } from '$lib/constants/api-config';
+import { CACHE_MAX_SIZE, CACHE_TTL } from "$lib/constants/api-config";
 
 interface CacheEntry<T> {
 	data: T;
@@ -47,7 +47,7 @@ class CacheService {
 
 		this.cache.set(key, {
 			data,
-			timestamp: Date.now()
+			timestamp: Date.now(),
 		});
 	}
 

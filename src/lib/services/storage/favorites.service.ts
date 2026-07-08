@@ -1,11 +1,11 @@
 // Favorites localStorage service
-const STORAGE_KEY = 'pokedex-favorites';
+const STORAGE_KEY = "pokedex-favorites";
 
 /**
  * Get favorites from localStorage
  */
 export function getFavorites(): Set<number> {
-	if (typeof window === 'undefined') {
+	if (typeof window === "undefined") {
 		return new Set();
 	}
 
@@ -18,7 +18,7 @@ export function getFavorites(): Set<number> {
 		const parsed = JSON.parse(stored);
 		return new Set<number>(parsed);
 	} catch (error) {
-		console.error('Failed to load favorites:', error);
+		console.error("Failed to load favorites:", error);
 		return new Set();
 	}
 }
@@ -27,7 +27,7 @@ export function getFavorites(): Set<number> {
  * Save favorites to localStorage
  */
 export function saveFavorites(favorites: Set<number>): void {
-	if (typeof window === 'undefined') {
+	if (typeof window === "undefined") {
 		return;
 	}
 
@@ -35,7 +35,7 @@ export function saveFavorites(favorites: Set<number>): void {
 		const array = Array.from(favorites);
 		localStorage.setItem(STORAGE_KEY, JSON.stringify(array));
 	} catch (error) {
-		console.error('Failed to save favorites:', error);
+		console.error("Failed to save favorites:", error);
 	}
 }
 
@@ -85,13 +85,13 @@ export function isFavorite(id: number): boolean {
  * Clear all favorites
  */
 export function clearFavorites(): void {
-	if (typeof window === 'undefined') {
+	if (typeof window === "undefined") {
 		return;
 	}
 
 	try {
 		localStorage.removeItem(STORAGE_KEY);
 	} catch (error) {
-		console.error('Failed to clear favorites:', error);
+		console.error("Failed to clear favorites:", error);
 	}
 }

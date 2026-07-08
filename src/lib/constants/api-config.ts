@@ -1,7 +1,8 @@
 // API Configuration constants
 
-export const BASE_URL = 'https://pokeapi.co/api/v2';
-export const SPRITES_BASE = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon';
+export const BASE_URL = "https://pokeapi.co/api/v2";
+export const SPRITES_BASE =
+	"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon";
 
 export const DEFAULT_PAGE_SIZE = 20;
 export const CACHE_MAX_SIZE = 500;

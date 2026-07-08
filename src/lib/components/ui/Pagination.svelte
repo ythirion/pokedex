@@ -1,61 +1,61 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
+import { createEventDispatcher } from "svelte";
 
-	export let currentPage: number;
-	export let totalPages: number;
+export let currentPage: number;
+export let totalPages: number;
 
-	const dispatch = createEventDispatcher<{ change: number }>();
+const dispatch = createEventDispatcher<{ change: number }>();
 
-	function handlePrevious() {
-		if (currentPage > 1) {
-			dispatch('change', currentPage - 1);
+function handlePrevious() {
+	if (currentPage > 1) {
+		dispatch("change", currentPage - 1);
+	}
+}
+
+function handleNext() {
+	if (currentPage < totalPages) {
+		dispatch("change", currentPage + 1);
+	}
+}
+
+function handlePage(page: number) {
+	dispatch("change", page);
+}
+
+// Generate page numbers to display
+$: pageNumbers = (() => {
+	const pages: (number | string)[] = [];
+	const maxVisible = 7;
+
+	if (totalPages <= maxVisible) {
+		// Show all pages
+		for (let i = 1; i <= totalPages; i++) {
+			pages.push(i);
 		}
-	}
+	} else {
+		// Show first, last, and pages around current
+		pages.push(1);
 
-	function handleNext() {
-		if (currentPage < totalPages) {
-			dispatch('change', currentPage + 1);
-		}
-	}
-
-	function handlePage(page: number) {
-		dispatch('change', page);
-	}
-
-	// Generate page numbers to display
-	$: pageNumbers = (() => {
-		const pages: (number | string)[] = [];
-		const maxVisible = 7;
-
-		if (totalPages <= maxVisible) {
-			// Show all pages
-			for (let i = 1; i <= totalPages; i++) {
-				pages.push(i);
-			}
-		} else {
-			// Show first, last, and pages around current
-			pages.push(1);
-
-			if (currentPage > 3) {
-				pages.push('...');
-			}
-
-			const start = Math.max(2, currentPage - 1);
-			const end = Math.min(totalPages - 1, currentPage + 1);
-
-			for (let i = start; i <= end; i++) {
-				pages.push(i);
-			}
-
-			if (currentPage < totalPages - 2) {
-				pages.push('...');
-			}
-
-			pages.push(totalPages);
+		if (currentPage > 3) {
+			pages.push("...");
 		}
 
-		return pages;
-	})();
+		const start = Math.max(2, currentPage - 1);
+		const end = Math.min(totalPages - 1, currentPage + 1);
+
+		for (let i = start; i <= end; i++) {
+			pages.push(i);
+		}
+
+		if (currentPage < totalPages - 2) {
+			pages.push("...");
+		}
+
+		pages.push(totalPages);
+	}
+
+	return pages;
+})();
 </script>
 
 <div class="flex items-center justify-center gap-2 py-8">

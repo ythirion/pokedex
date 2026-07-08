@@ -1,5 +1,9 @@
-import { writable } from 'svelte/store';
-import { getStoredTheme, setStoredTheme, type Theme } from '$lib/services/storage/theme.service';
+import { writable } from "svelte/store";
+import {
+	getStoredTheme,
+	setStoredTheme,
+	type Theme,
+} from "$lib/services/storage/theme.service";
 
 interface ThemeState {
 	current: Theme;
@@ -8,8 +12,8 @@ interface ThemeState {
 
 function createThemeStore() {
 	const { subscribe, set, update } = writable<ThemeState>({
-		current: 'light',
-		isInitialized: false
+		current: "light",
+		isInitialized: false,
 	});
 
 	return {
@@ -19,7 +23,7 @@ function createThemeStore() {
 		 * Initialize theme from localStorage or system preference
 		 */
 		initializeTheme: () => {
-			if (typeof window === 'undefined') {
+			if (typeof window === "undefined") {
 				return;
 			}
 
@@ -28,16 +32,18 @@ function createThemeStore() {
 
 			// If no stored theme, use system preference
 			if (!theme) {
-				const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-				theme = prefersDark ? 'dark' : 'light';
+				const prefersDark = window.matchMedia(
+					"(prefers-color-scheme: dark)",
+				).matches;
+				theme = prefersDark ? "dark" : "light";
 				setStoredTheme(theme);
 			}
 
 			// Apply theme to document
-			if (theme === 'dark') {
-				document.documentElement.classList.add('dark');
+			if (theme === "dark") {
+				document.documentElement.classList.add("dark");
 			} else {
-				document.documentElement.classList.remove('dark');
+				document.documentElement.classList.remove("dark");
 			}
 
 			// Update store
@@ -48,37 +54,37 @@ function createThemeStore() {
 		 * Set theme explicitly
 		 */
 		setTheme: (theme: Theme) => {
-			if (typeof window === 'undefined') {
+			if (typeof window === "undefined") {
 				return;
 			}
 
 			// Apply theme to document
-			if (theme === 'dark') {
-				document.documentElement.classList.add('dark');
+			if (theme === "dark") {
+				document.documentElement.classList.add("dark");
 			} else {
-				document.documentElement.classList.remove('dark');
+				document.documentElement.classList.remove("dark");
 			}
 
 			// Save to localStorage
 			setStoredTheme(theme);
 
 			// Update store
-			update(state => ({ ...state, current: theme }));
+			update((state) => ({ ...state, current: theme }));
 		},
 
 		/**
 		 * Toggle between light and dark theme
 		 */
 		toggleTheme: () => {
-			update(state => {
-				const newTheme: Theme = state.current === 'light' ? 'dark' : 'light';
+			update((state) => {
+				const newTheme: Theme = state.current === "light" ? "dark" : "light";
 
-				if (typeof window !== 'undefined') {
+				if (typeof window !== "undefined") {
 					// Apply theme to document
-					if (newTheme === 'dark') {
-						document.documentElement.classList.add('dark');
+					if (newTheme === "dark") {
+						document.documentElement.classList.add("dark");
 					} else {
-						document.documentElement.classList.remove('dark');
+						document.documentElement.classList.remove("dark");
 					}
 
 					// Save to localStorage
@@ -87,7 +93,7 @@ function createThemeStore() {
 
 				return { ...state, current: newTheme };
 			});
-		}
+		},
 	};
 }
 

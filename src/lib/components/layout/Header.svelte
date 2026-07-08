@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { base } from '$app/paths';
-	import { page } from '$app/stores';
-	import ThemeToggle from '$lib/components/ui/ThemeToggle.svelte';
+import { base } from "$app/paths";
+import { page } from "$app/stores";
+import ThemeToggle from "$lib/components/ui/ThemeToggle.svelte";
 </script>
 
 <header class="bg-red-600 text-white shadow-lg">

@@ -1,31 +1,34 @@
 <script lang="ts">
-	import { filtersStore } from '$lib/stores/filters.store';
-	import { POKEMON_TYPES } from '$lib/constants/pokemon-types';
-	import { GENERATIONS } from '$lib/constants/generations';
-	import { getTypeColors, translateType } from '$lib/utils/type-colors';
-	import type { PokemonTypeString } from '$lib/types/common.types';
+import { GENERATIONS } from "$lib/constants/generations";
+import { POKEMON_TYPES } from "$lib/constants/pokemon-types";
+import { filtersStore } from "$lib/stores/filters.store";
+import type { PokemonTypeString } from "$lib/types/common.types";
+import { getTypeColors, translateType } from "$lib/utils/type-colors";
 
-	let isOpen = false;
+let isOpen = false;
 
-	$: filters = $filtersStore;
+$: filters = $filtersStore;
 
-	function toggleType(type: PokemonTypeString) {
-		filtersStore.toggleType(type);
-	}
+function toggleType(type: PokemonTypeString) {
+	filtersStore.toggleType(type);
+}
 
-	function setGeneration(genId: number | null) {
-		filtersStore.setGeneration(genId);
-	}
+function setGeneration(genId: number | null) {
+	filtersStore.setGeneration(genId);
+}
 
-	function clearFilters() {
-		filtersStore.clear();
-	}
+function clearFilters() {
+	filtersStore.clear();
+}
 
-	function toggleLegendary() {
-		filtersStore.toggleLegendary();
-	}
+function toggleLegendary() {
+	filtersStore.toggleLegendary();
+}
 
-	$: hasActiveFilters = filters.types.length > 0 || filters.generation !== null || filters.legendaryOnly;
+$: hasActiveFilters =
+	filters.types.length > 0 ||
+	filters.generation !== null ||
+	filters.legendaryOnly;
 </script>
 
 <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md dark:shadow-gray-900/30 p-4 mb-6 transition-colors">

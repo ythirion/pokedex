@@ -1,18 +1,18 @@
 <script lang="ts">
-	import { searchStore } from '$lib/stores/search.store';
+import { searchStore } from "$lib/stores/search.store";
 
-	let inputValue = '';
+let inputValue = "";
 
-	function handleInput(event: Event) {
-		const target = event.target as HTMLInputElement;
-		inputValue = target.value;
-		searchStore.setQuery(inputValue);
-	}
+function handleInput(event: Event) {
+	const target = event.target as HTMLInputElement;
+	inputValue = target.value;
+	searchStore.setQuery(inputValue);
+}
 
-	function clearSearch() {
-		inputValue = '';
-		searchStore.clear();
-	}
+function clearSearch() {
+	inputValue = "";
+	searchStore.clear();
+}
 </script>
 
 <div class="relative">

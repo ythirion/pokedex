@@ -1,15 +1,15 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import favicon from '$lib/assets/favicon.svg';
-	import Header from '$lib/components/layout/Header.svelte';
-	import { themeStore } from '$lib/stores/theme.store';
-	import '../app.css';
+import { onMount } from "svelte";
+import favicon from "$lib/assets/favicon.svg";
+import Header from "$lib/components/layout/Header.svelte";
+import { themeStore } from "$lib/stores/theme.store";
+import "../app.css";
 
-	let { children } = $props();
+let { children } = $props();
 
-	onMount(() => {
-		themeStore.initializeTheme();
-	});
+onMount(() => {
+	themeStore.initializeTheme();
+});
 </script>
 
 <svelte:head>

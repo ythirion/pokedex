@@ -1,13 +1,13 @@
 <script lang="ts">
-	import type { EnrichedPokemon } from '$lib/types/pokemon.types';
-	import PokemonCard from './PokemonCard.svelte';
-	import PokeballLoader from '../ui/PokeballLoader.svelte';
-	import { favoritesStore } from '$lib/stores/favorites.store';
+import { favoritesStore } from "$lib/stores/favorites.store";
+import type { EnrichedPokemon } from "$lib/types/pokemon.types";
+import PokeballLoader from "../ui/PokeballLoader.svelte";
+import PokemonCard from "./PokemonCard.svelte";
 
-	export let pokemon: EnrichedPokemon[];
-	export let isLoading: boolean = false;
+export let pokemon: EnrichedPokemon[];
+export let isLoading: boolean = false;
 
-	$: favorites = $favoritesStore;
+$: favorites = $favoritesStore;
 </script>
 
 {#if isLoading}

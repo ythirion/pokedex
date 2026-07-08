@@ -1,73 +1,82 @@
 <script lang="ts">
-    import { base } from '$app/paths';
-	import type { Pokemon } from '$lib/types/pokemon.types';
-	import type { PokemonSpecies, EvolutionChain } from '$lib/types/species.types';
-	import { getPokemonById } from '$lib/services/api/pokemon.service';
-	import { getFullEvolutionData } from '$lib/services/api/species.service';
-	import { formatPokemonName, formatPokemonId, formatHeight, formatWeight, getStatName, getStatColor } from '$lib/utils/pokemon.utils';
-	import { getTypeColors, translateType } from '$lib/utils/type-colors';
-	import { favoritesStore } from '$lib/stores/favorites.store';
-	import PokeballLoader from '../ui/PokeballLoader.svelte';
-	import ErrorMessage from '../ui/ErrorMessage.svelte';
-	import EvolutionChainComponent from './EvolutionChain.svelte';
+import { base } from "$app/paths";
+import { getPokemonById } from "$lib/services/api/pokemon.service";
+import { getFullEvolutionData } from "$lib/services/api/species.service";
+import { favoritesStore } from "$lib/stores/favorites.store";
+import type { Pokemon } from "$lib/types/pokemon.types";
+import type { EvolutionChain, PokemonSpecies } from "$lib/types/species.types";
+import {
+	formatHeight,
+	formatPokemonId,
+	formatPokemonName,
+	formatWeight,
+	getStatColor,
+	getStatName,
+} from "$lib/utils/pokemon.utils";
+import { getTypeColors, translateType } from "$lib/utils/type-colors";
+import ErrorMessage from "../ui/ErrorMessage.svelte";
+import PokeballLoader from "../ui/PokeballLoader.svelte";
+import EvolutionChainComponent from "./EvolutionChain.svelte";
 
-	export let id: number;
+export let id: number;
 
-	let pokemon: Pokemon | null = null;
-	let species: PokemonSpecies | null = null;
-	let evolutionChain: EvolutionChain | null = null;
-	let isLoading = true;
-	let error: string | null = null;
+let pokemon: Pokemon | null = null;
+let species: PokemonSpecies | null = null;
+let evolutionChain: EvolutionChain | null = null;
+let isLoading = true;
+let error: string | null = null;
 
-	$: favorites = $favoritesStore;
-	$: isFavorite = favorites.has(id);
+$: favorites = $favoritesStore;
+$: isFavorite = favorites.has(id);
 
-	// Reload Pokemon when ID changes
-	$: if (id) {
-		loadPokemon();
+// Reload Pokemon when ID changes
+$: if (id) {
+	loadPokemon();
+}
+
+async function loadPokemon() {
+	isLoading = true;
+	error = null;
+
+	// Scroll to top when changing Pokemon
+	if (typeof window !== "undefined") {
+		window.scrollTo({ top: 0, behavior: "smooth" });
 	}
 
-	async function loadPokemon() {
-		isLoading = true;
-		error = null;
+	try {
+		// Load Pokemon and evolution data in parallel
+		const [pokemonData, evolutionData] = await Promise.all([
+			getPokemonById(id),
+			getFullEvolutionData(id),
+		]);
 
-		// Scroll to top when changing Pokemon
-		if (typeof window !== 'undefined') {
-			window.scrollTo({ top: 0, behavior: 'smooth' });
-		}
-
-		try {
-			// Load Pokemon and evolution data in parallel
-			const [pokemonData, evolutionData] = await Promise.all([
-				getPokemonById(id),
-				getFullEvolutionData(id)
-			]);
-
-			pokemon = pokemonData;
-			species = evolutionData.species;
-			evolutionChain = evolutionData.evolutionChain;
-		} catch (err) {
-			error = err instanceof Error ? err.message : 'Failed to load Pokemon';
-		} finally {
-			isLoading = false;
-		}
+		pokemon = pokemonData;
+		species = evolutionData.species;
+		evolutionChain = evolutionData.evolutionChain;
+	} catch (err) {
+		error = err instanceof Error ? err.message : "Failed to load Pokemon";
+	} finally {
+		isLoading = false;
 	}
+}
 
-	function toggleFavorite() {
-		favoritesStore.toggle(id);
-	}
+function toggleFavorite() {
+	favoritesStore.toggle(id);
+}
 
-	function getDescription(): string {
-		if (!species) return '';
-		const entry = species.flavor_text_entries.find((e) => e.language.name === 'fr');
-		return entry ? entry.flavor_text.replace(/\f/g, ' ') : '';
-	}
+function getDescription(): string {
+	if (!species) return "";
+	const entry = species.flavor_text_entries.find(
+		(e) => e.language.name === "fr",
+	);
+	return entry ? entry.flavor_text.replace(/\f/g, " ") : "";
+}
 
-	function getFrenchName(): string {
-		if (!species || !pokemon) return formatPokemonName(pokemon?.name || '');
-		const frenchName = species.names.find((n) => n.language.name === 'fr')?.name;
-		return frenchName || formatPokemonName(pokemon.name);
-	}
+function getFrenchName(): string {
+	if (!species || !pokemon) return formatPokemonName(pokemon?.name || "");
+	const frenchName = species.names.find((n) => n.language.name === "fr")?.name;
+	return frenchName || formatPokemonName(pokemon.name);
+}
 </script>
 
 {#if isLoading}

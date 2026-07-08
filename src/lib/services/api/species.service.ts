@@ -1,6 +1,7 @@
 // Pokemon Species and Evolution API service
-import { pokeAPIClient } from './pokeapi';
-import type { PokemonSpecies, EvolutionChain } from '$lib/types/species.types';
+
+import type { EvolutionChain, PokemonSpecies } from "$lib/types/species.types";
+import { pokeAPIClient } from "./pokeapi";
 
 /**
  * Get Pokemon species by ID
@@ -30,7 +31,7 @@ export async function getEvolutionChain(url: string): Promise<EvolutionChain> {
  * This combines species fetch + evolution chain fetch
  */
 export async function getFullEvolutionData(
-	id: number
+	id: number,
 ): Promise<{ species: PokemonSpecies; evolutionChain: EvolutionChain }> {
 	try {
 		// First get species to get evolution chain URL
@@ -42,9 +43,13 @@ export async function getFullEvolutionData(
 		return { species, evolutionChain };
 	} catch (error) {
 		if (error instanceof Error) {
-			throw new Error(`Failed to get evolution data for Pokemon ${id}: ${error.message}`);
+			throw new Error(
+				`Failed to get evolution data for Pokemon ${id}: ${error.message}`,
+			);
 		}
-		throw new Error(`Failed to get evolution data for Pokemon ${id}: Unknown error`);
+		throw new Error(
+			`Failed to get evolution data for Pokemon ${id}: Unknown error`,
+		);
 	}
 }
 
@@ -54,7 +59,7 @@ export async function getFullEvolutionData(
 export function extractEvolutionIds(chain: EvolutionChain): number[] {
 	const ids: number[] = [];
 
-	function traverse(link: EvolutionChain['chain']) {
+	function traverse(link: EvolutionChain["chain"]) {
 		// Extract ID from species URL
 		const matches = link.species.url.match(/\/pokemon-species\/(\d+)\//);
 		if (matches && matches[1]) {

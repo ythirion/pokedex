@@ -1,7 +1,7 @@
 // Search store with debouncing
-import { writable, derived } from 'svelte/store';
-import { debounce } from '$lib/utils/debounce';
-import { DEBOUNCE_DELAY } from '$lib/constants/api-config';
+import { derived, writable } from "svelte/store";
+import { DEBOUNCE_DELAY } from "$lib/constants/api-config";
+import { debounce } from "$lib/utils/debounce";
 
 interface SearchState {
 	query: string;
@@ -9,8 +9,8 @@ interface SearchState {
 }
 
 const initialState: SearchState = {
-	query: '',
-	debouncedQuery: ''
+	query: "",
+	debouncedQuery: "",
 };
 
 function createSearchStore() {
@@ -37,7 +37,7 @@ function createSearchStore() {
 		 */
 		clear: () => {
 			set(initialState);
-		}
+		},
 	};
 }
 

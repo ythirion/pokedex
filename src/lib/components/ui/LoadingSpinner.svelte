@@ -1,11 +1,11 @@
 <script lang="ts">
-	export let size: 'sm' | 'md' | 'lg' = 'md';
+export let size: "sm" | "md" | "lg" = "md";
 
-	const sizeClasses = {
-		sm: 'w-6 h-6',
-		md: 'w-12 h-12',
-		lg: 'w-16 h-16'
-	};
+const sizeClasses = {
+	sm: "w-6 h-6",
+	md: "w-12 h-12",
+	lg: "w-16 h-16",
+};
 </script>
 
 <div class="flex items-center justify-center p-8">

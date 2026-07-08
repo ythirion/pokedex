@@ -1,7 +1,7 @@
 // localStorage cache service for Pokemon metadata
-import type { PokemonMetadata } from '$lib/types/pokemon.types';
+import type { PokemonMetadata } from "$lib/types/pokemon.types";
 
-const CACHE_KEY = 'pokedex_metadata';
+const CACHE_KEY = "pokedex_metadata";
 const CACHE_VERSION = 1;
 const CACHE_TTL_HOURS = 24;
 
@@ -15,7 +15,7 @@ interface CacheData {
  * Check if metadata cache is valid (not expired and correct version)
  */
 export function isMetadataCacheValid(): boolean {
-	if (typeof window === 'undefined') return false;
+	if (typeof window === "undefined") return false;
 
 	try {
 		const cached = localStorage.getItem(CACHE_KEY);
@@ -53,7 +53,7 @@ export function getMetadataFromCache(): PokemonMetadata[] | null {
 		const data: CacheData = JSON.parse(cached);
 		return data.metadata;
 	} catch (error) {
-		console.error('Failed to read metadata from cache:', error);
+		console.error("Failed to read metadata from cache:", error);
 		return null;
 	}
 }
@@ -62,18 +62,18 @@ export function getMetadataFromCache(): PokemonMetadata[] | null {
  * Save Pokemon metadata to cache
  */
 export function setMetadataInCache(metadata: PokemonMetadata[]): void {
-	if (typeof window === 'undefined') return;
+	if (typeof window === "undefined") return;
 
 	try {
 		const data: CacheData = {
 			version: CACHE_VERSION,
 			timestamp: Date.now(),
-			metadata
+			metadata,
 		};
 
 		localStorage.setItem(CACHE_KEY, JSON.stringify(data));
 	} catch (error) {
-		console.error('Failed to save metadata to cache:', error);
+		console.error("Failed to save metadata to cache:", error);
 	}
 }
 
@@ -81,11 +81,11 @@ export function setMetadataInCache(metadata: PokemonMetadata[]): void {
  * Clear metadata cache
  */
 export function clearMetadataCache(): void {
-	if (typeof window === 'undefined') return;
+	if (typeof window === "undefined") return;
 
 	try {
 		localStorage.removeItem(CACHE_KEY);
 	} catch (error) {
-		console.error('Failed to clear metadata cache:', error);
+		console.error("Failed to clear metadata cache:", error);
 	}
 }
