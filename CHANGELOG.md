@@ -41,6 +41,7 @@
 - Observatory by hardcoding host ([239826d](https://github.com/ythirion/pokedex/commit/239826d779a58a9b94c03c96d6ef3c377e1200b6))
 - Playwright config ([e811afa](https://github.com/ythirion/pokedex/commit/e811afa885167f2997bb795689e3bf13e2d69b94))
 - Biome issues ([5dc8673](https://github.com/ythirion/pokedex/commit/5dc867316a01d4a4f1818f5b8aaf4c0718bd69ba))
+- Ci ([b9b1c8c](https://github.com/ythirion/pokedex/commit/b9b1c8c0d1a54859773a3885b2ae6eef75271d08))
 
 ### 📚 Documentation
 
@@ -56,3 +57,4 @@
 - Update CHANGELOG.md ([3ff49d9](https://github.com/ythirion/pokedex/commit/3ff49d94c6b5d6924b169b59b38fb2d8e83cd0dc))
 - Update CHANGELOG.md ([7db5282](https://github.com/ythirion/pokedex/commit/7db5282e6a9a9afd1e7532228de94f1ed10354c6))
 - Update CHANGELOG.md ([21eb57b](https://github.com/ythirion/pokedex/commit/21eb57b1d4e8f79b101af94fc3a02baa2d5011eb))
+- Update CHANGELOG.md ([a6c232b](https://github.com/ythirion/pokedex/commit/a6c232b511f741b8c2b59d07bc936de21f5850a9))
