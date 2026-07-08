@@ -63,11 +63,6 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps chromium
 
-      - name: Start frontend
-        run: |
-          npm run dev &
-          npx wait-on http://localhost:5173/
-
       - name: Accessibility tests
         run: npx playwright test --reporter=list,html
 

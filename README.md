@@ -4,6 +4,7 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
 [![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white)](https://vite.dev)
 [![Playwright](https://img.shields.io/badge/Playwright-2EAD33?logo=playwright&logoColor=white)](https://playwright.dev)
+[![Biome](https://img.shields.io/badge/Biome-60A5FA?logo=biome&logoColor=white)](https://biomejs.dev)
 
 [![Deploy to GitHub Pages](https://github.com/ythirion/pokedex/actions/workflows/deploy.yml/badge.svg)](https://github.com/ythirion/pokedex/actions/workflows/deploy.yml)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=ythirion_pokedex&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=ythirion_pokedex)
@@ -41,6 +42,9 @@ A modern, full-featured Pokédex web application built with SvelteKit, TypeScrip
 - **API**: PokeAPI (https://pokeapi.co)
 - **State Management**: Svelte Stores
 - **Build Tool**: Vite
+- **Linting & Formatting**: Biome
+- **Testing**: Playwright (accessibility testing with axe-core)
+- **Git Hooks**: Husky (pre-commit checks)
 
 ## Getting Started
 
@@ -65,6 +69,15 @@ npm run preview
 
 # Type check
 npm run check
+
+# Lint & format (check only)
+npx @biomejs/biome check
+
+# Lint & format (auto-fix)
+npx @biomejs/biome check --write
+
+# Run accessibility tests
+npm run test:accessibility
 ```
 
 The application will be available at `http://localhost:5173`
@@ -133,6 +146,46 @@ This application uses the free [PokeAPI](https://pokeapi.co) service. No API key
 ```bash
 npm run check
 ```
+
+### Linting & Formatting
+
+This project uses [Biome](https://biomejs.dev) for linting and formatting (JS/TS, Svelte, and CSS, including Tailwind's `@apply`/`@tailwind` directives). Configuration lives in `biome.json`.
+
+```bash
+# Check for issues
+npx @biomejs/biome check
+
+# Check and auto-fix
+npx @biomejs/biome check --write
+
+# Format only
+npx @biomejs/biome format --write
+```
+
+### Testing
+
+Accessibility tests run with [Playwright](https://playwright.dev) and [axe-core](https://github.com/dequelabs/axe-core), checking against WCAG 2.0/2.1 A/AA and RGAA v4 rules.
+
+```bash
+# Run accessibility tests
+npm run test:accessibility
+
+# Run tests in debug mode
+npm run tests:debug
+
+# Run tests in headed mode
+npm run tests:headed
+
+# View the last HTML test report
+npm run tests:report
+
+# Generate test code by recording browser actions
+npm run codegen
+```
+
+### Git Hooks
+
+A [Husky](https://typicode.github.io/husky) pre-commit hook automatically runs Biome formatting and the accessibility test suite before each commit (see `.husky/pre-commit`).
 
 ### Building
 
