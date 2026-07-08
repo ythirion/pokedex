@@ -187,6 +187,21 @@ npm run codegen
 
 A [Husky](https://typicode.github.io/husky) pre-commit hook automatically runs Biome formatting and the accessibility test suite before each commit (see `.husky/pre-commit`).
 
+### CI/CD Pipeline
+
+Every push to `master` triggers the `Deploy to GitHub Pages` workflow (see `.github/workflows/deploy.yml`), which runs the following checks and steps in order:
+
+1. **[Gitleaks](https://github.com/gitleaks/gitleaks)**: Scans the repository for accidentally committed secrets (API keys, tokens, credentials)
+2. **CHANGELOG generation**: Auto-generates and commits `CHANGELOG.md` from commit history via [git-cliff](https://git-cliff.org)
+3. **Build**: Type-checks and builds the production bundle
+4. **Accessibility tests**: Runs the Playwright/axe-core test suite against the built app
+5. **[SonarCloud](https://sonarcloud.io)**: Static analysis for code smells, bugs, and technical debt
+6. **[GreenIT Analysis](https://github.com/ythirion/greenit-analysis-action)**: Eco-design/carbon footprint analysis
+7. **Deploy**: Publishes the built app to GitHub Pages
+8. **Mozilla Observatory scan**: Security header scan of the deployed site
+
+Playwright reports and Mozilla Observatory results are uploaded as workflow artifacts for review.
+
 ### Building
 
 ```bash

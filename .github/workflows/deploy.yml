@@ -79,6 +79,11 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
+      - name: Start frontend
+        run: |
+          npm run dev &
+          npx wait-on http://localhost:5173/
+
       - name: GreenIT Analysis
         uses: ythirion/greenit-analysis-action@v0.1.2
 
