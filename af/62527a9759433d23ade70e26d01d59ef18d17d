@@ -1,0 +1,30 @@
+biome.json
+  s_84ee94eac21375::t_6baa6ef63653ef 3-7
+  s_84ee94eac21375::t_1b4c7c553e5391 1-2,11-16
+  s_84ee94eac21375::t_f5d6633ee59e9f 8-10
+playwright.config.ts
+  s_84ee94eac21375::t_1aaacac7e77cce 24
+.husky/pre-commit
+  h_0a88d9aba8622a 1
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "af62527a9759433d23ade70e26d01d59ef18d17d",
+  "prompts": {},
+  "humans": {
+    "h_0a88d9aba8622a": {
+      "author": "Yoan Thirion <yoan.thirion@gmail.com>"
+    }
+  },
+  "sessions": {
+    "s_84ee94eac21375": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "87b61696-8e60-436e-bede-fe0a2ac25fa5",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Yoan Thirion <yoan.thirion@gmail.com>"
+    }
+  }
+}
